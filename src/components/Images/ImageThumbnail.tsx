@@ -2,11 +2,13 @@ import type { ReactNode } from 'react';
 
 export type ImageThumbnailType = 'image' | 'media' | 'gallery';
 export type ImageThumbnailRadius = 0 | 8 | 12 | 16 | 20;
+export type ImageThumbnailRatio = '1:1' | '3:2' | '3:4' | '3:4.5' | '3:5' | '16:9';
 
 export interface ImageThumbnailProps {
   src?: string;
   alt?: string;
   type?: ImageThumbnailType;
+  ratio?: ImageThumbnailRatio;
   radius?: ImageThumbnailRadius;
   /** 좌상단 슬롯 (예: 배지) */
   slotTopLeft?: ReactNode;
@@ -20,8 +22,25 @@ export interface ImageThumbnailProps {
   className?: string;
 }
 
-const shadowGradients = [
-  'linear-gradient(to top, rgba(0,0,0,.20) 0%, transparent 60%)',
+const ratioMap: Record<ImageThumbnailRatio, string> = {
+  '1:1': '1 / 1',
+  '3:2': '3 / 2',
+  '3:4': '3 / 4',
+  '3:4.5': '2 / 3',
+  '3:5': '3 / 5',
+  '16:9': '16 / 9',
+};
+
+// Media: 하단 그림자 + 8% overlay
+const mediaShadow = [
+  'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.2) 100%)',
+  'rgba(0,0,0,0.08)',
+];
+
+// Gallery: 상단 + 하단 그림자 + 8% overlay
+const galleryShadow = [
+  'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 33%, rgba(0,0,0,0) 100%)',
+  'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.2) 100%)',
   'rgba(0,0,0,0.08)',
 ];
 
@@ -29,6 +48,7 @@ export const ImageThumbnail = ({
   src,
   alt = '',
   type = 'image',
+  ratio = '1:1',
   radius = 0,
   slotTopLeft,
   slotTopRight,
@@ -37,14 +57,14 @@ export const ImageThumbnail = ({
   disabled = false,
   className = '',
 }: ImageThumbnailProps) => {
-  const hasShadow = type === 'media' || type === 'gallery';
+  const shadows = type === 'gallery' ? galleryShadow : type === 'media' ? mediaShadow : [];
 
   return (
     <div
       style={{
         position: 'relative',
         width: '100%',
-        aspectRatio: '1 / 1',
+        aspectRatio: ratioMap[ratio],
         borderRadius: radius,
         overflow: 'hidden',
         flexShrink: 0,
@@ -82,7 +102,7 @@ export const ImageThumbnail = ({
       )}
 
       {/* Shadow overlay (media / gallery) */}
-      {hasShadow && shadowGradients.map((grad, i) => (
+      {shadows.map((grad, i) => (
         <div
           key={i}
           style={{ position: 'absolute', inset: 0, background: grad }}

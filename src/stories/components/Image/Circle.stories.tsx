@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImageCircle> = {
-  title: 'Components/Image/Circle',
+  title: 'Components/Images/Circle',
   component: ImageCircle,
   tags: ['autodocs'],
   parameters: {
@@ -213,8 +213,8 @@ export const States: Story = {
 export const Matrix: Story = {
   name: 'Matrix',
   render: () => {
-    const sizes: ImageCircleSize[] = ['3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'];
-    const types: ImageCircleType[] = ['default', 'noImage', 'noImgPerson', 'placeHolder'];
+    const sizes: ImageCircleSize[] = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs'];
+    const types: ImageCircleType[] = ['noImage', 'noImgPerson', 'placeHolder', 'default'];
     return (
       <div style={{ fontFamily: 'Pretendard, sans-serif', overflowX: 'auto', padding: 4 }}>
         <table style={{ borderCollapse: 'collapse' }}>

@@ -85,20 +85,22 @@ const meta: Meta<typeof Thumbnail> = {
 
 | Ratio | 비율 | Usage |
 |-------|------|-------|
-| \`1:1\`  | 정사각형 | 프로필·앨범 썸네일 |
-| \`16:9\` | 가로형 | 동영상·뉴스 썸네일 |
-| \`4:3\`  | 표준 가로 | 일반 이미지 카드 |
-| \`4:5\`  | 세로형 | 세로 이미지·숏폼 |
-| \`9:16\` | 세로 풀 | 쇼츠·릴스 썸네일 |
+| \`1:1\`   | 정사각형 | 프로필·앨범 썸네일 |
+| \`3:2\`   | 가로형 | 일반 이미지 카드 |
+| \`3:4\`   | 세로형 | 세로 이미지 카드 |
+| \`3:4.5\` | 세로형 (길게) | 세로 이미지·숏폼 |
+| \`3:5\`   | 세로형 (더 길게) | 쇼츠·릴스 썸네일 |
+| \`16:9\`  | 와이드 | 동영상·뉴스 썸네일 |
 
 ### Radius
 
 | Radius | Value | Usage |
 |--------|-------|-------|
-| \`none\` | 0px | 기본, 테두리 없음 |
+| \`0\` | 0px | 기본, 테두리 없음 |
 | \`8\` | 8px | 소형 카드 |
 | \`12\` | 12px | 중형 카드 |
 | \`16\` | 16px | 대형 카드 |
+| \`20\` | 20px | 대형 카드 (라운드) |
 
 ### Slots (Overlay)
 
@@ -114,9 +116,9 @@ const meta: Meta<typeof Thumbnail> = {
 \`\`\`tsx
 import { Thumbnail } from '@/components/Thumbnail';
 
-<Thumbnail src={img} type="image" radius={12} />
-<Thumbnail src={img} type="media" radius={8} duration="03:25" badge="LIVE" showMore />
-<Thumbnail src={img} type="gallery" radius={12} duration="12:00" rank={1} />
+<Thumbnail src={img} type="image" ratio="1:1" radius={12} />
+<Thumbnail src={img} type="media" ratio="3:2" radius={8} duration="03:25" badge="LIVE" showMore />
+<Thumbnail src={img} type="gallery" ratio="3:4" radius={12} duration="12:00" rank={1} />
 \`\`\`
         `.trim(),
       },
@@ -131,13 +133,13 @@ import { Thumbnail } from '@/components/Thumbnail';
     },
     ratio: {
       control: 'select',
-      options: ['1:1', '16:9', '4:3', '4:5', '9:16'] satisfies ThumbnailRatio[],
+      options: ['1:1', '3:2', '3:4', '3:4.5', '3:5', '16:9'] satisfies ThumbnailRatio[],
       description: '이미지 비율 — 설정 시 width 기준으로 height 자동 계산',
       table: { type: { summary: 'ThumbnailRatio' } },
     },
     radius: {
       control: 'select',
-      options: ['none', 8, 12, 16] satisfies ThumbnailRadius[],
+      options: [0, 8, 12, 16, 20] satisfies ThumbnailRadius[],
       description: '모서리 반경',
       table: { type: { summary: 'ThumbnailRadius' }, defaultValue: { summary: 'none' } },
     },
@@ -158,10 +160,10 @@ type Story = StoryObj<typeof Thumbnail>;
 export const Playground: Story = {
   args: {
     type: 'media',
+    ratio: '1:1',
     radius: 12,
     src: IMG,
     width: 150,
-    height: 150,
     duration: '03:25',
     badge: 'LIVE',
     showMore: true,
@@ -223,7 +225,7 @@ export const Ratios: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: 4 }}>
       <Block label="Usage" desc="width 기준으로 height가 자동 계산됩니다.">
         <Row gap={16}>
-          {(['1:1', '16:9', '4:3', '4:5', '9:16'] as ThumbnailRatio[]).map(r => (
+          {(['1:1', '3:2', '3:4', '3:4.5', '3:5', '16:9'] as ThumbnailRatio[]).map(r => (
             <div key={r} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Thumbnail src={IMG} type="image" radius={8} width={120} ratio={r} />
               <Caption>{r}</Caption>
@@ -242,7 +244,7 @@ export const Radiuses: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: 4 }}>
       <Block label="Usage" desc="모서리 반경 옵션입니다.">
         <Row gap={16}>
-          {(['none', 8, 12, 16] as ThumbnailRadius[]).map(r => (
+          {([0, 8, 12, 16, 20] as ThumbnailRadius[]).map(r => (
             <div key={String(r)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Thumbnail src={IMG} type="image" radius={r} width={150} height={150} />
               <Caption>radius={r}</Caption>
@@ -310,17 +312,6 @@ export const Slots: Story = {
         </Row>
       </Block>
 
-      <Block label="rank" desc="좌하단 랭킹 번호를 표시합니다.">
-        <Row gap={16}>
-          {[1, 2, 3].map(n => (
-            <div key={n} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Thumbnail src={IMG} type="image" radius={8} width={150} height={150} rank={n} />
-              <Caption>rank={n}</Caption>
-            </div>
-          ))}
-        </Row>
-      </Block>
-
       <Block label="duration" desc="우하단 재생시간. light.icon.video (14×14) + 시간 텍스트로 구성됩니다. media·gallery 타입에서만 표시됩니다.">
         <Row gap={16}>
           {(['media', 'gallery'] as ThumbnailType[]).map(t => (
@@ -356,7 +347,7 @@ export const Matrix: Story = {
   name: 'Matrix',
   render: () => {
     const types: ThumbnailType[] = ['image', 'media', 'gallery'];
-    const radiuses: ThumbnailRadius[] = ['none', 8, 12, 16];
+    const radiuses: ThumbnailRadius[] = [0, 8, 12, 16, 20];
 
     return (
       <div style={{ fontFamily: 'Pretendard, sans-serif', overflowX: 'auto', padding: 4 }}>

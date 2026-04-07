@@ -2,6 +2,25 @@ import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
 import '../src/index.css';
 
+const DOCS_TYPOGRAPHY_CSS = `
+  .sbdocs-title {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.3px !important;
+  }
+  .sbdocs h2,
+  .sbdocs h3,
+  .sbdocs h4 {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: 700 !important;
+  }
+  .sbdocs-description,
+  .sbdocs .sbdocs-p {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+`;
+
 const CANVAS_DARK_CSS = `
   body, .sb-show-main, .sb-main-padded, .sb-main-centered, .sb-main-fullscreen,
   #storybook-root, .docs-story, .docs-story > div {
@@ -24,6 +43,14 @@ const withTheme: Decorator = (Story, context) => {
   const isDark = context.globals['theme'] === 'dark';
 
   React.useEffect(() => {
+    // Docs typography override
+    if (!document.getElementById('mds-docs-typography')) {
+      const typoEl = document.createElement('style');
+      typoEl.id = 'mds-docs-typography';
+      typoEl.textContent = DOCS_TYPOGRAPHY_CSS;
+      document.head.appendChild(typoEl);
+    }
+
     const root = document.documentElement;
     root.classList.toggle('dark', isDark);
 
@@ -62,10 +89,27 @@ const preview: Preview = {
         order: [
           'Home',
           'Foundation',
-          'Icon',
+          'Assets', ['Icon', 'container.icon', 'Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'], '*'],
           'Components',
-          ['Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'], '*'],
-          ['Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'], '*'],
+          [
+            'Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'],
+            'Chip',
+            'Dialogs',
+            'Divider',
+            'Header', ['Docs', 'Title', 'Block', 'Components', 'Usage', 'Matrix', '*'],
+            'Images', ['Docs', 'Circle', 'Opacity', 'Place', 'Rectangle', 'Shadow', 'Thumbnail', '*'],
+            'Pagination',
+            'Popover @의선',
+            'Profile',
+            'Reaction', ['Docs', 'Horizontal', 'Vertical', '*'],
+            'Search',
+            'Sheets @ 수정',
+            'Snackbar @수정',
+            'Switch',
+            'Tabs',
+            'Thumbnail',
+            '*',
+          ],
           'Templates',
           '*',
         ],

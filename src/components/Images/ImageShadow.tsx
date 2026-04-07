@@ -46,7 +46,7 @@ export const ImageShadow = ({
         position: 'relative',
         width,
         height,
-        borderRadius: 8,
+        borderRadius: 0,
         overflow: 'hidden',
         flexShrink: 0,
         opacity: disabled ? 0.35 : 1,

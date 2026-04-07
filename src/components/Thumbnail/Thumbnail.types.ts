@@ -1,6 +1,6 @@
 export type ThumbnailType = 'image' | 'media' | 'gallery';
-export type ThumbnailRadius = 'none' | 8 | 12 | 16;
-export type ThumbnailRatio = '1:1' | '16:9' | '4:3' | '4:5' | '9:16';
+export type ThumbnailRadius = 0 | 8 | 12 | 16 | 20;
+export type ThumbnailRatio = '1:1' | '3:2' | '3:4' | '3:4.5' | '3:5' | '16:9';
 
 export interface ThumbnailProps {
   /** 썸네일 타입 */

@@ -52,9 +52,9 @@ const meta: Meta<typeof ButtonGroup> = {
 
 | Size | Height | Description |
 |------|--------|-------------|
-| \`sm\` | 36px | 좁은 영역 내 보조 확인 |
-| \`md\` | 40px | 기본 — 일반 폼·모달 |
-| \`lg\` | 44px | 강조된 확인이 필요한 경우 |
+| \`sm\` | 44px | 좁은 영역 내 보조 확인 |
+| \`md\` | 48px | 기본 — 일반 폼·모달 |
+| \`lg\` | 52px | 강조된 확인이 필요한 경우 |
 
 \`\`\`tsx
 import { ButtonGroup } from '@/components/Buttons';
@@ -146,8 +146,10 @@ export const Sizes: Story = {
             </thead>
             <tbody>
               {[
-                ['Height', '36', '40', '44'],
-                ['Text size', '14', '15', '15'],
+                ['Height', '44', '48', '52'],
+                ['Text size', '15', '16', '16'],
+                ['Padding H', '16', '16', '20'],
+                ['Radius (square)', '12', '12', '12'],
               ].map(row => (
                 <tr key={row[0]} style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>
                   {row.map((cell, i) => (

@@ -1,25 +1,18 @@
-import type { ThumbnailProps, ThumbnailRadius, ThumbnailRatio } from './Thumbnail.types';
-
-const radiusMap: Record<ThumbnailRadius, number> = {
-  none: 0,
-  8: 8,
-  12: 12,
-  16: 16,
-};
+import type { ThumbnailProps, ThumbnailRatio } from './Thumbnail.types';
 
 const ratioMap: Record<ThumbnailRatio, number> = {
-  '1:1':  1,
-  '16:9': 9 / 16,
-  '4:3':  3 / 4,
-  '4:5':  5 / 4,
-  '9:16': 16 / 9,
+  '1:1':   1,
+  '3:2':   2 / 3,
+  '3:4':   4 / 3,
+  '3:4.5': 4.5 / 3,
+  '3:5':   5 / 3,
+  '16:9':  9 / 16,
 };
 
 // ── 재생시간 아이콘 (우하단) ─────────────────────────────────────────────────
-const IconVideo = () => (
-  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 3.5C2 2.67 2.67 2 3.5 2H8.5C9.33 2 10 2.67 10 3.5V10.5C10 11.33 9.33 12 8.5 12H3.5C2.67 12 2 11.33 2 10.5V3.5Z" fill="white" fillOpacity="0.9"/>
-    <path d="M10 5.5L12.5 4V10L10 8.5V5.5Z" fill="white" fillOpacity="0.9"/>
+const IconPlay = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+    <path d="M4.5 2.5L11 7L4.5 11.5V2.5Z" fill="white" />
   </svg>
 );
 
@@ -34,7 +27,7 @@ const IconMore = () => (
 
 export const Thumbnail = ({
   type = 'image',
-  radius = 'none',
+  radius = 0,
   ratio,
   src,
   alt = '',
@@ -46,7 +39,6 @@ export const Thumbnail = ({
   showMore = false,
   className = '',
 }: ThumbnailProps) => {
-  const br = radiusMap[radius];
   const height = ratio ? Math.round(width * ratioMap[ratio]) : heightProp;
   const isMedia = type === 'media' || type === 'gallery';
 
@@ -71,7 +63,7 @@ export const Thumbnail = ({
         position: 'relative',
         width,
         height,
-        borderRadius: br,
+        borderRadius: radius,
         overflow: 'hidden',
         flexShrink: 0,
         background: 'var(--color-neutral-background-separated-1)',
@@ -146,7 +138,7 @@ export const Thumbnail = ({
           position: 'absolute', bottom: 8, right: 8,
           display: 'flex', alignItems: 'center', gap: 3,
         }}>
-          <IconVideo />
+          <IconPlay />
           <span style={{
             fontSize: 12, fontWeight: 700,
             color: '#fff', lineHeight: '16px',

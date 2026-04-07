@@ -24,7 +24,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 const meta: Meta<typeof BadgeTooltip> = {
-  title: 'Components/Badges/Tooltip',
+  title: 'Assets/Badges/Tooltip',
   component: BadgeTooltip,
   tags: ['autodocs'],
   parameters: {

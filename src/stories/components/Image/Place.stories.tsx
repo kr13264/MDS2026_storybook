@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImagePlace> = {
-  title: 'Components/Image/Place',
+  title: 'Components/Images/Place',
   component: ImagePlace,
   tags: ['autodocs'],
   parameters: {

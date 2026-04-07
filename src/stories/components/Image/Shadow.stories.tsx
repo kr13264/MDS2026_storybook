@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImageShadow> = {
-  title: 'Components/Image/Shadow',
+  title: 'Components/Images/Shadow',
   component: ImageShadow,
   tags: ['autodocs'],
   parameters: {
@@ -53,7 +53,7 @@ const meta: Meta<typeof ImageShadow> = {
 \`\`\`tsx
 import { ImageShadow } from '@/components/Images';
 
-<ImageShadow src={imgSrc} showShadow={true} shadow="down" width={200} height={150} />
+<ImageShadow src={imgSrc} showShadow={true} shadow="down" width={148} height={148} />
 \`\`\`
         `.trim(),
       },
@@ -112,8 +112,8 @@ export const Playground: Story = {
     src: IMG_SRC,
     showShadow: true,
     shadow: 'down',
-    width: 200,
-    height: 150,
+    width: 148,
+    height: 148,
   },
 };
 
@@ -131,7 +131,7 @@ export const Directions: Story = {
             { shadow: 'up&down' as ImageShadowDirection, showShadow: true, desc: '상하단 동시' },
           ]).map(({ shadow, showShadow, desc }) => (
             <div key={shadow} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ImageShadow src={IMG_SRC} shadow={shadow} showShadow={showShadow} width={200} height={150} />
+              <ImageShadow src={IMG_SRC} shadow={shadow} showShadow={showShadow} width={148} height={148} />
               <Caption>{shadow}</Caption>
               <p style={{ fontFamily: 'Pretendard,sans-serif', fontSize: 10, color: 'var(--color-neutral-foreground-disabled)', margin: '2px 0 0', textAlign: 'center' }}>{desc}</p>
             </div>

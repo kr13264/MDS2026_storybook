@@ -24,7 +24,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 const meta: Meta<typeof BadgeAd> = {
-  title: 'Components/Badges/Ad',
+  title: 'Assets/Badges/Ad',
   component: BadgeAd,
   tags: ['autodocs'],
   parameters: {

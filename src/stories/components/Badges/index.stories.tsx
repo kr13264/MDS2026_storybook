@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 const meta: Meta<typeof BadgeOverlay> = {
-  title: 'Components/Badges',
+  title: 'Assets/Badges',
   component: BadgeOverlay,
   tags: ['autodocs'],
   parameters: {

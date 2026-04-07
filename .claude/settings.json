@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '' \"s|title: 'Components/Overlay/Dialogs'|title: 'Components/Dialogs'|\" src/stories/components/Dialogs.stories.tsx)",
+      "Bash(sed -i '' \"s|title: 'Components/Overlay/Sheets @ 수정'|title: 'Components/Sheets @ 수정'|\" src/stories/components/Sheet.stories.tsx)",
+      "Bash(sed -i '' \"s|title: 'Components/Overlay/Snackbar @수정'|title: 'Components/Snackbar @수정'|\" src/stories/components/Snackbar.stories.tsx)",
+      "Bash(sed -i '' \"s|title: 'Components/Overlay/Popover @의선'|title: 'Components/Popover @의선'|\" src/stories/components/Tooltip.stories.tsx)",
+      "Bash(sed -i '' \"s|title: 'Components/Navigation/Pagination'|title: 'Components/Pagination'|\" src/stories/components/Pagination.stories.tsx)"
+    ]
+  }
+}

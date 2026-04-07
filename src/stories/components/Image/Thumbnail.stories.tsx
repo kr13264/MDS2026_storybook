@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ImageThumbnail } from '@/components/Images';
-import type { ImageThumbnailType, ImageThumbnailRadius } from '@/components/Images';
+import type { ImageThumbnailType, ImageThumbnailRadius, ImageThumbnailRatio } from '@/components/Images';
 
 const IMG_SRC = 'https://images.unsplash.com/photo-1596367407372-96cb88503db6?q=80&w=800&auto=format&fit=crop';
 
@@ -85,7 +85,7 @@ const ProfileHorizontal = () => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImageThumbnail> = {
-  title: 'Components/Image/Thumbnail',
+  title: 'Components/Images/Thumbnail',
   component: ImageThumbnail,
   tags: ['autodocs'],
   parameters: {
@@ -106,7 +106,18 @@ Image, Media, Gallery 타입과 다양한 코너 라디우스 변형을 지원�
 |------|-------------|
 | \`image\` | 기본 이미지. 하단 좌측에 프로필 슬롯 표시 |
 | \`media\` | 미디어 콘텐츠. 하단 그림자 + 우하단 재생시간 슬롯 |
-| \`gallery\` | 갤러리 콘텐츠. media와 유사, 하단 그림자 + 우하단 재생시간 슬롯 |
+| \`gallery\` | 갤러리 콘텐츠. 상하 그림자 + 우하단 재생시간 슬롯 |
+
+### Ratio
+
+| Ratio | Aspect Ratio |
+|-------|-------------|
+| \`1:1\` | 정사각형 |
+| \`3:2\` | 가로형 |
+| \`3:4\` | 세로형 |
+| \`3:4.5\` | 세로형 (길게) |
+| \`3:5\` | 세로형 (더 길게) |
+| \`16:9\` | 와이드 |
 
 ### Radius
 
@@ -133,6 +144,7 @@ import { ImageThumbnail } from '@/components/Images';
 <ImageThumbnail
   src={imgSrc}
   type="media"
+  ratio="3:2"
   radius={12}
   slotTopLeft={<Badge text="NEW" />}
   slotBottomRight={<Duration time="03:25" />}
@@ -150,6 +162,15 @@ import { ImageThumbnail } from '@/components/Images';
       table: {
         type: { summary: 'ImageThumbnailType' },
         defaultValue: { summary: 'image' },
+      },
+    },
+    ratio: {
+      control: 'select',
+      options: ['1:1', '3:2', '3:4', '3:4.5', '3:5', '16:9'] satisfies ImageThumbnailRatio[],
+      description: '종횡비',
+      table: {
+        type: { summary: 'ImageThumbnailRatio' },
+        defaultValue: { summary: '1:1' },
       },
     },
     radius: {
@@ -183,6 +204,7 @@ export const Playground: Story = {
   args: {
     src: IMG_SRC,
     type: 'image',
+    ratio: '1:1',
     radius: 12,
   },
 };
@@ -233,6 +255,35 @@ export const Types: Story = {
   ),
 };
 
+// ── Ratio ──────────────────────────────────────────────────────────────────
+export const Ratio: Story = {
+  name: 'Ratio',
+  render: () => {
+    const ratios: ImageThumbnailRatio[] = ['1:1', '3:2', '3:4', '3:4.5', '3:5', '16:9'];
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <Block label="Ratio" desc="종횡비 변형 비교 (type=media, radius=12)">
+          <Row gap={16}>
+            {ratios.map(r => (
+              <div key={r} style={{ width: 148 }}>
+                <ImageThumbnail
+                  src={IMG_SRC}
+                  type="media"
+                  ratio={r}
+                  radius={12}
+                  slotTopRight={<MoreIcon />}
+                  slotBottomRight={<DurationLabel />}
+                />
+                <Caption>{r}</Caption>
+              </div>
+            ))}
+          </Row>
+        </Block>
+      </div>
+    );
+  },
+};
+
 // ── Radius ─────────────────────────────────────────────────────────────────
 export const Radii: Story = {
   name: 'Radius',
@@ -259,9 +310,61 @@ export const Radii: Story = {
   ),
 };
 
-// ── Matrix ─────────────────────────────────────────────────────────────────
+// ── Matrix: Ratio × Type ──────────────────────────────────────────────────
 export const Matrix: Story = {
   name: 'Matrix',
+  render: () => {
+    const types: ImageThumbnailType[] = ['image', 'media', 'gallery'];
+    const ratios: ImageThumbnailRatio[] = ['1:1', '3:2', '3:4', '3:4.5', '3:5', '16:9'];
+    return (
+      <div style={{ fontFamily: 'Pretendard, sans-serif', overflowX: 'auto', padding: 4 }}>
+        <table style={{ borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              <th style={{ padding: '8px 16px 8px 0', textAlign: 'left', fontSize: 11, color: 'var(--color-neutral-foreground-subtle-3)', fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' }}>
+                Ratio \ Type
+              </th>
+              {types.map(t => (
+                <th key={t} style={{ padding: '8px 16px', fontSize: 11, color: 'var(--color-neutral-foreground-subtle-3)', fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' }}>
+                  {t}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {ratios.map(r => (
+              <tr key={r} style={{ borderTop: '1px solid var(--color-neutral-stroke-divider)' }}>
+                <td style={{ padding: '12px 16px 12px 0', fontSize: 12, fontWeight: 600, color: 'var(--color-neutral-foreground-subtle-1)', verticalAlign: 'middle' }}>
+                  {r}
+                </td>
+                {types.map(type => (
+                  <td key={type} style={{ padding: '12px 8px', verticalAlign: 'middle', textAlign: 'center' }}>
+                    <div style={{ width: 148 }}>
+                      <ImageThumbnail
+                        src={IMG_SRC}
+                        type={type}
+                        ratio={r}
+                        radius={12}
+                        slotTopLeft={<BadgeOverlay />}
+                        slotTopRight={<MoreIcon />}
+                        slotBottomLeft={type === 'image' ? <ProfileHorizontal /> : undefined}
+                        slotBottomRight={type !== 'image' ? <DurationLabel /> : undefined}
+                      />
+                    </div>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  },
+};
+
+// ── Matrix: Radius × Type ─────────────────────────────────────────────────
+export const RadiusMatrix: Story = {
+  name: 'Radius Matrix',
   render: () => {
     const types: ImageThumbnailType[] = ['image', 'media', 'gallery'];
     const radii: ImageThumbnailRadius[] = [0, 8, 12, 16, 20];

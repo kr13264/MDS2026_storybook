@@ -2,13 +2,13 @@ import type { ButtonGroupProps, ButtonGroupSize, ButtonGroupShape } from './Butt
 
 // ── Size Map ───────────────────────────────────────────────────────────────
 const sizeClasses: Record<ButtonGroupSize, string> = {
-  sm: 'h-9  px-3 text-sm     gap-1',
-  md: 'h-10 px-4 text-[15px] gap-1',
-  lg: 'h-11 px-4 text-[15px] gap-1',
+  sm: 'h-[44px] px-4 text-[15px]',
+  md: 'h-[48px] px-4 text-[16px]',
+  lg: 'h-[52px] px-5 text-[16px]',
 };
 
 const radiusClasses: Record<ButtonGroupShape, string> = {
-  square: 'rounded-md',
+  square: 'rounded-[12px]',
   round:  'rounded-full',
 };
 
@@ -34,7 +34,7 @@ export const ButtonGroup = ({
 
   const cancelCls = [
     base,
-    'bg-transparent border border-neutral-stroke-default text-neutral-foreground-default',
+    'bg-white border border-[rgba(0,0,0,0.1)] text-neutral-foreground-default',
     'hover:bg-neutral-background-alpha-1 active:bg-neutral-background-alpha-2',
     fullWidth ? 'flex-1' : '',
     disabled ? 'opacity-40 cursor-not-allowed pointer-events-none' : 'cursor-pointer',
@@ -44,7 +44,7 @@ export const ButtonGroup = ({
 
   const confirmCls = [
     base,
-    'bg-primary-background-default text-white',
+    'bg-[var(--color-primary-foreground-default,#03a94d)] text-white',
     'hover:opacity-90 active:opacity-80',
     fullWidth ? 'flex-1' : '',
     disabled ? 'opacity-40 cursor-not-allowed pointer-events-none' : 'cursor-pointer',

@@ -1,25 +1,28 @@
 import type { ChipProps, ChipSize } from './Chip.types';
+import { Icon } from '../Icon';
 
-// ── 닫기 아이콘 ──────────────────────────────────────────────────────────────
-const IcClose = ({ size }: { size: number }) => (
-  <svg width={size} height={size} viewBox="0 0 10 10" fill="none">
-    <path d="M2 2l6 6M8 2L2 8" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round"/>
+// ── 닫기 아이콘 (multiSelect) ────────────────────────────────────────────────
+const IcClose = () => (
+  <svg width={10} height={10} viewBox="0 0 10 10" fill="none">
+    <path d="M7.5 2.5L2.5 7.5M2.5 2.5L7.5 7.5" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" />
+  </svg>
+);
+
+// ── 드롭다운 화살표 아이콘 ──────────────────────────────────────────────────
+const IcChevronDown = () => (
+  <svg width={10} height={10} viewBox="0 0 10 10" fill="none">
+    <path d="M2 4L5 7L8 4" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
 // ── 사이즈 토큰 ──────────────────────────────────────────────────────────────
 const sizeToken: Record<ChipSize, {
   height: number;
-  fontSize: number;
-  paddingH: number;
-  paddingV: number;
   iconHeadSize: number;
-  iconTailSize: number;
   thumbnailSize: number;
-  gap: number;
 }> = {
-  sm: { height: 32, fontSize: 14, paddingH: 10, paddingV: 6,  iconHeadSize: 14, iconTailSize: 10, thumbnailSize: 24, gap: 4 },
-  md: { height: 36, fontSize: 14, paddingH: 12, paddingV: 8, iconHeadSize: 16, iconTailSize: 10, thumbnailSize: 28, gap: 6 },
+  sm: { height: 32, iconHeadSize: 14, thumbnailSize: 24 },
+  md: { height: 36, iconHeadSize: 16, thumbnailSize: 28 },
 };
 
 export const Chip = ({
@@ -37,15 +40,80 @@ export const Chip = ({
   className = '',
 }: ChipProps) => {
   const tk = sizeToken[size];
-  const showClose = multiSelect && selected;
+  const isMultiSelected = multiSelect && selected;
+  const isSingleSelected = selected && !multiSelect;
+  const isIconOnly = type === 'iconOnly';
+  const isThumbnail = type === 'thumbnail';
+  const hasIconHead = !!iconHead && type === 'label';
+  const hasIconTail = !!iconTail && type === 'label' && !multiSelect;
 
-  // ── 색상 ──────────────────────────────────────────────────────────────────
-  const bg          = selected ? 'var(--color-primary-background-default)' : 'var(--color-neutral-background-raised-1)';
-  const textColor   = selected ? 'var(--color-neutral-background-static-white)' : 'var(--color-neutral-foreground-default)';
-  const borderColor = selected ? 'transparent' : 'var(--color-neutral-stroke-default)';
-  const opacity     = disabled ? 0.4 : 1;
+  // ── 배경색 ────────────────────────────────────────────────────────────────
+  let bg: string;
+  if (isSingleSelected) {
+    bg = 'var(--color-primary-foreground-default, #03a94d)';
+  } else if (isMultiSelected) {
+    bg = 'var(--color-primary-background-subtle-1, #e6f9ee)';
+  } else {
+    bg = 'var(--color-neutral-background-default, #fff)';
+  }
 
-  const iconColor = selected ? 'var(--color-neutral-background-static-white)' : 'var(--color-neutral-foreground-subtle-1)';
+  // ── 테두리 ────────────────────────────────────────────────────────────────
+  let border: string;
+  if (isSingleSelected) {
+    border = '1px solid transparent';
+  } else if (isMultiSelected) {
+    border = '1px solid var(--color-primary-foreground-default, #03a94d)';
+  } else {
+    border = '1px solid var(--color-neutral-stroke-subtle-1, rgba(0,0,0,0.1))';
+  }
+
+  // ── 텍스트 색상 ──────────────────────────────────────────────────────────
+  let textColor: string;
+  if (disabled) {
+    textColor = 'var(--color-neutral-foreground-disabled, rgba(0,0,0,0.2))';
+  } else if (isSingleSelected) {
+    textColor = 'var(--color-neutral-foreground-static-white, #fff)';
+  } else if (isMultiSelected) {
+    textColor = 'var(--color-primary-foreground-default, #03a94d)';
+  } else {
+    textColor = 'var(--color-neutral-foreground-default, #000)';
+  }
+
+  // ── 패딩 ─────────────────────────────────────────────────────────────────
+  let paddingLeft: number;
+  let paddingRight: number;
+
+  if (isIconOnly) {
+    paddingLeft = 0;
+    paddingRight = 0;
+  } else if (isThumbnail) {
+    paddingLeft = 4;
+    paddingRight = size === 'sm' ? 10 : 12;
+  } else if (isMultiSelected) {
+    // multiSelect selected: label + close icon
+    if (hasIconHead) {
+      paddingLeft = size === 'sm' ? 8 : 10;
+      paddingRight = size === 'sm' ? 10 : 12;
+    } else {
+      paddingLeft = size === 'sm' ? 10 : 12;
+      paddingRight = size === 'sm' ? 10 : 12;
+    }
+  } else if (hasIconHead && hasIconTail) {
+    paddingLeft = size === 'sm' ? 8 : 10;
+    paddingRight = size === 'sm' ? 8 : 10;
+  } else if (hasIconHead) {
+    paddingLeft = size === 'sm' ? 8 : 10;
+    paddingRight = size === 'sm' ? 10 : 12;
+  } else if (hasIconTail) {
+    paddingLeft = size === 'sm' ? 10 : 12;
+    paddingRight = size === 'sm' ? 8 : 10;
+  } else {
+    paddingLeft = size === 'sm' ? 10 : 12;
+    paddingRight = size === 'sm' ? 10 : 12;
+  }
+
+  // ── gap ──────────────────────────────────────────────────────────────────
+  const gap = isMultiSelected ? 8 : isIconOnly ? 0 : 4;
 
   return (
     <button
@@ -55,90 +123,97 @@ export const Chip = ({
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: tk.gap,
-        height: tk.height,
-        padding: `${tk.paddingV}px ${tk.paddingH}px`,
+        justifyContent: 'center',
+        gap,
+        height: isIconOnly ? tk.height : tk.height,
+        width: isIconOnly ? tk.height : undefined,
+        minHeight: tk.height,
+        maxHeight: tk.height,
+        ...(isIconOnly
+          ? { minWidth: tk.height, maxWidth: tk.height }
+          : { paddingLeft, paddingRight }),
         borderRadius: 999,
-        border: `1px solid ${borderColor}`,
+        border,
         background: bg,
         color: textColor,
-        fontSize: tk.fontSize,
+        fontFamily: 'var(--typography-font-family-default, Pretendard, -apple-system, sans-serif)',
+        fontSize: 'var(--typography-font-size-label-x-small, 14px)',
         fontWeight: 400,
-        fontFamily: 'Pretendard, -apple-system, sans-serif',
-        letterSpacing: '-0.3px',
-        lineHeight: 1,
+        lineHeight: 'var(--typography-line-height-label-x-small, 19px)',
+        letterSpacing: 'var(--typography-letter-spacing-default, -0.3px)',
         cursor: disabled ? 'not-allowed' : 'pointer',
-        opacity,
         whiteSpace: 'nowrap',
-        transition: 'background 0.15s, border-color 0.15s, color 0.15s',
         outline: 'none',
         flexShrink: 0,
       }}
     >
-      {/* 썸네일 이미지 */}
-      {type === 'thumbnail' && thumbnail && (
+      {/* 썸네일 */}
+      {isThumbnail && (
         <span style={{
           width: tk.thumbnailSize, height: tk.thumbnailSize,
-          borderRadius: '50%',
-          overflow: 'hidden',
-          flexShrink: 0,
+          borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
+          position: 'relative',
         }}>
-          <img
-            src={thumbnail}
-            alt=""
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
+          {thumbnail ? (
+            <img src={thumbnail} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          ) : (
+            <span style={{ width: '100%', height: '100%', display: 'block', backgroundColor: 'var(--color-neutral-background-raised-1, #eee)', borderRadius: '50%' }} />
+          )}
+          <span style={{
+            position: 'absolute', inset: 0,
+            backgroundColor: 'var(--color-neutral-background-dimmed-ghost, rgba(0,0,0,0.03))',
+            borderRadius: '50%',
+          }} />
         </span>
       )}
 
-      {/* 좌측 아이콘 (label, thumbnail 타입) */}
-      {type !== 'iconOnly' && type !== 'thumbnail' && iconHead && (
+      {/* 좌측 아이콘 (label 타입) */}
+      {hasIconHead && (
         <span style={{
           width: tk.iconHeadSize, height: tk.iconHeadSize,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: iconColor, flexShrink: 0,
+          flexShrink: 0,
         }}>
           {iconHead}
         </span>
       )}
 
       {/* 아이콘만 (iconOnly) */}
-      {type === 'iconOnly' && iconHead && (
+      {isIconOnly && (
         <span style={{
           width: tk.iconHeadSize, height: tk.iconHeadSize,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: iconColor,
         }}>
-          {iconHead}
+          {iconHead ?? <Icon name="refresh" variant="outlined" size={size === 'sm' ? 'sm' : 'xs'} />}
         </span>
       )}
 
       {/* 레이블 */}
-      {(type === 'label' || type === 'thumbnail') && (
-        <span>{label}</span>
+      {(type === 'label' || isThumbnail) && (
+        <span style={{ textAlign: 'center' }}>{label}</span>
       )}
 
-      {/* 우측 아이콘 (iconTail) */}
-      {iconTail && !showClose && (
+      {/* 드롭다운 화살표 (iconTail) */}
+      {hasIconTail && (
         <span style={{
-          width: tk.iconTailSize, height: tk.iconTailSize,
+          width: 10, height: 10,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          color: iconColor, flexShrink: 0,
+          flexShrink: 0,
         }}>
           {iconTail}
         </span>
       )}
 
-      {/* 우측 닫기 (multiSelect 선택 시) */}
-      {showClose && (
+      {/* 닫기 아이콘 (multiSelect + selected) */}
+      {isMultiSelected && (
         <span
           onClick={e => { e.stopPropagation(); onRemove?.(); }}
           style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: iconColor, flexShrink: 0, cursor: 'pointer',
+            flexShrink: 0, cursor: 'pointer',
           }}
         >
-          <IcClose size={tk.iconTailSize} />
+          <IcClose />
         </span>
       )}
     </button>

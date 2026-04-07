@@ -22,21 +22,21 @@ const Spinner = ({ size }: { size: ButtonSize }) => {
 // ── Size Map ───────────────────────────────────────────────────────────────
 // 위키 Measurement 기준 (height / text / icon / padding / radius)
 const sizeClasses: Record<ButtonSize, string> = {
-  xs:  'h-7 px-[10px] text-xs   rounded-[6px] gap-0.5',
-  sm:  'h-9 px-3      text-sm   rounded-[6px] gap-1',
-  md:  'h-10 px-3     text-[15px] rounded-md gap-1',
-  lg:  'h-11 px-4     text-[15px] rounded-md gap-1',
-  xl:  'h-12 px-4     text-base rounded-md gap-1.5',
-  '2xl': 'h-[52px] px-5 text-base rounded-md gap-1.5',
+  xs:    'h-7 px-[10px] text-xs     font-normal  rounded-full gap-0.5',
+  sm:    'h-9 px-3      text-sm     font-normal  rounded-full gap-1',
+  md:    'h-10 px-3     text-[15px] font-normal  rounded-full gap-1',
+  lg:    'h-11 px-4     text-[15px] font-semibold rounded-full gap-1',
+  xl:    'h-12 px-4     text-base   font-semibold rounded-full gap-1.5',
+  '2xl': 'h-[52px] px-5 text-base   font-semibold rounded-full gap-1.5',
 };
 
 const iconSizeClasses: Record<ButtonSize, string> = {
-  xs:    'w-4 h-4',   // 최대 16px
-  sm:    'w-4 h-4',   // 최대 16px
-  md:    'w-5 h-5',   // 최대 20px
-  lg:    'w-5 h-5',
-  xl:    'w-5 h-5',
-  '2xl': 'w-5 h-5',
+  xs:    'w-[10px] h-[10px]',
+  sm:    'w-3.5 h-3.5',  // 14px
+  md:    'w-4 h-4',      // 16px
+  lg:    'w-4 h-4',
+  xl:    'w-4 h-4',
+  '2xl': 'w-4 h-4',
 };
 
 // ── Variant × Color Map ────────────────────────────────────────────────────
@@ -168,7 +168,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const classes = [
       // Base
       'inline-flex items-center justify-center',
-      'font-semibold leading-none select-none whitespace-nowrap',
+      'leading-none select-none whitespace-nowrap tracking-[-0.3px]',
       'transition-all duration-150 ease-out',
       'focus-visible:outline-none',
       // Variant × Color

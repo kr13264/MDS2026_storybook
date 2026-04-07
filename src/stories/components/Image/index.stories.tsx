@@ -26,7 +26,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImageRect> = {
-  title: 'Components/Image',
+  title: 'Components/Images',
   component: ImageRect,
   tags: ['autodocs'],
   parameters: {
@@ -85,7 +85,7 @@ export const Overview: Story = {
             { ratio: '1:1' as const, label: '1:1 · opacity 40%', opacity: '40%' as const },
             { ratio: '3:4' as const, label: '3:4 · shadow down', shadow: 'down' as const },
           ].map(({ ratio, label, opacity, shadow }) => (
-            <div key={label} style={{ width: 180 }}>
+            <div key={label} style={{ width: 148 }}>
               <ImageRect
                 src={IMG_SRC}
                 ratio={ratio}
@@ -99,7 +99,7 @@ export const Overview: Story = {
       </Block>
 
       <Block label="Circle" desc="원형 이미지. 프로필·아바타·채널 썸네일에 사용">
-        <Row gap={12} >
+        <Row gap={12}>
           {(['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const).map(size => (
             <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <ImageCircle src={IMG_SRC} size={size} />
@@ -128,7 +128,7 @@ export const Overview: Story = {
         <Row gap={12}>
           {(['default', 'noImage', 'placeHolder'] as const).map(type => (
             <div key={type} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ImagePlace type={type} size={100} src={type === 'default' ? IMG_SRC : undefined} />
+              <ImagePlace type={type} size={148} src={type === 'default' ? IMG_SRC : undefined} />
               <Caption>{type}</Caption>
             </div>
           ))}
@@ -139,7 +139,7 @@ export const Overview: Story = {
         <Row gap={12}>
           {(['none', '3%', '40%'] as const).map(opacity => (
             <div key={opacity} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ImageOpacity src={IMG_SRC} opacity={opacity} width={120} height={90} />
+              <ImageOpacity src={IMG_SRC} opacity={opacity} width={148} height={148} />
               <Caption>{opacity}</Caption>
             </div>
           ))}
@@ -155,7 +155,7 @@ export const Overview: Story = {
             { shadow: 'up&down' as const, showShadow: true },
           ]).map(({ shadow, showShadow }) => (
             <div key={shadow} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ImageShadow src={IMG_SRC} shadow={shadow} showShadow={showShadow} width={120} height={90} />
+              <ImageShadow src={IMG_SRC} shadow={shadow} showShadow={showShadow} width={148} height={148} />
               <Caption>{shadow}</Caption>
             </div>
           ))}

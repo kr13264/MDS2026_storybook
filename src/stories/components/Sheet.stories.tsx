@@ -43,7 +43,7 @@ const ComingSoon = () => (
 );
 
 const meta: Meta<typeof ComingSoon> = {
-  title: 'Components/Sheet',
+  title: 'Components/Sheets @ 수정',
   component: ComingSoon,
   parameters: {
     layout: 'centered',

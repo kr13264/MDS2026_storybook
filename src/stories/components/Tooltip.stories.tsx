@@ -43,7 +43,7 @@ const ComingSoon = () => (
 );
 
 const meta: Meta<typeof ComingSoon> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Popover @의선',
   component: ComingSoon,
   parameters: {
     layout: 'centered',

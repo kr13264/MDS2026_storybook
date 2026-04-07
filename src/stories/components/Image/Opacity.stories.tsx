@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImageOpacity> = {
-  title: 'Components/Image/Opacity',
+  title: 'Components/Images/Opacity',
   component: ImageOpacity,
   tags: ['autodocs'],
   parameters: {
@@ -105,8 +105,8 @@ export const Playground: Story = {
   args: {
     src: IMG_SRC,
     opacity: 'none',
-    width: 200,
-    height: 150,
+    width: 148,
+    height: 148,
   },
 };
 
@@ -119,7 +119,7 @@ export const Levels: Story = {
         <Row gap={12}>
           {(['none', '3%', '40%'] as ImageOpacityLevel[]).map(opacity => (
             <div key={opacity} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <ImageOpacity src={IMG_SRC} opacity={opacity} width={200} height={150} />
+              <ImageOpacity src={IMG_SRC} opacity={opacity} width={148} height={148} />
               <Caption>{opacity}</Caption>
             </div>
           ))}

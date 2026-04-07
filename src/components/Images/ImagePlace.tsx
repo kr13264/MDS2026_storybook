@@ -16,7 +16,7 @@ export const ImagePlace = ({ type = 'default', src, alt = '', size = 140, classN
   const base: React.CSSProperties = {
     width: size,
     height: size,
-    borderRadius: 8,
+    borderRadius: 0,
     overflow: 'hidden',
     flexShrink: 0,
     position: 'relative',

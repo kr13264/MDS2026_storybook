@@ -148,6 +148,7 @@ rounded-full  // 999px
 - BON UI 토큰 우선 — 하드코딩 HEX 금지 (스토리/문서용 제외)
 - 컴포넌트는 `src/components/` 하위
 - Story는 `src/stories/` 하위
+- **아이콘은 `src/components/Icon/`(Assets)에 있는 MDS 아이콘을 참조하여 구현한다** — 인라인 SVG를 직접 그리지 않고 MDS Icon 컴포넌트(`<Icon name="..." />`)를 우선 사용
 
 ### ❌ 금지
 
@@ -206,11 +207,11 @@ src/
 │       └── index.ts          ← 서브 컴포넌트 re-export
 └── stories/
     ├── foundation/
-    ├── icon/
+    ├── icon/                  ← Assets 카테고리 스토리
     ├── components/
     │   └── {Name}/
-    │       ├── index.stories.tsx   ← title: 'Components/{Name}' (Docs + Overview)
-    │       └── {Sub}.stories.tsx   ← title: 'Components/{Name}/{Sub}'
+    │       ├── index.stories.tsx   ← title: 'Components/{Category}/{Name}' (Docs + Overview)
+    │       └── {Sub}.stories.tsx   ← title: 'Components/{Category}/{Name}/{Sub}'
     └── templates/
 ```
 
@@ -218,14 +219,55 @@ src/
 
 ## 6. Story 가이드
 
-### 사이드바 구조 (서브 컴포넌트 있는 경우)
+### 사이드바 카테고리 구조
 
 ```
-{Name}
-  ├── Docs      ← index.stories.tsx (autodocs)
-  ├── {Sub1}
-  ├── {Sub2}
-  └── Overview  ← index.stories.tsx 맨 뒤
+Home
+Foundation
+Assets
+├── Icon              ← 아이콘 다운로드 (iframe)
+└── container.icon    ← 아이콘 컴포넌트 (Size, Style)
+Components
+├── Actions
+│   ├── Buttons       (Docs, Basic, Icon, Segment, Group)
+│   ├── Chip
+│   ├── Tabs
+│   ├── Controls      (Switch, Search)
+│   └── Reaction
+├── Display
+│   ├── Badges        (Docs, Overlay, Ad, Count, Tooltip, Verified)
+│   ├── Images
+│   ├── Thumbnail
+│   ├── Profile
+│   └── Divider
+├── Overlay
+│   ├── Dialogs
+│   ├── Sheets
+│   ├── Snackbar
+│   └── Popover
+└── Navigation
+    └── Pagination
+Templates
+```
+
+### title 네이밍 규칙
+
+스토리 title은 반드시 카테고리를 포함해야 합니다:
+
+```tsx
+// ✅ 올바른 title
+title: 'Components/Actions/Buttons'
+title: 'Components/Actions/Buttons/Basic'
+title: 'Components/Display/Badges'
+title: 'Components/Display/Badges/Overlay'
+title: 'Components/Overlay/Dialogs'
+title: 'Components/Navigation/Pagination'
+title: 'Assets/Icon'
+title: 'Assets/container.icon'
+
+// ❌ 카테고리 누락 금지
+title: 'Components/Buttons'          // Actions 누락
+title: 'Components/Badges/Overlay'   // Display 누락
 ```
 
 ### storySort 설정 (.storybook/preview.tsx)
@@ -233,9 +275,16 @@ src/
 ```ts
 storySort: {
   order: [
-    'Home', 'Foundation', 'Icon',
+    'Home', 'Foundation',
+    'Assets', ['Icon', 'container.icon', '*'],
     'Components',
-    ['{Name}', ['Docs', '{Sub1}', '{Sub2}', 'Overview', '*'], '*'],
+    [
+      'Actions', ['Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'], 'Chip', 'Tabs', 'Controls', 'Reaction', '*'],
+      'Display', ['Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'], 'Images', 'Thumbnail', 'Profile', 'Divider', '*'],
+      'Overlay', ['Dialogs', 'Sheets', 'Snackbar', 'Popover', '*'],
+      'Navigation', ['Pagination', '*'],
+      '*',
+    ],
     'Templates', '*',
   ],
 },
@@ -358,6 +407,23 @@ const Block = ({ label, desc, children }: { label: string; desc?: string; childr
 | 페이지 전체 배경 | `var(--color-neutral-background-default)` |
 
 > ⚠️ 라이트/다크 모드 모두 대응해야 하므로 **hex 하드코딩 절대 금지**. 반드시 `var(--color-*)` 사용.
+
+### Docs 페이지 타이포그래피 (preview.tsx)
+
+Storybook autodocs 제목(`.sbdocs-title`)은 **Pretendard 36px Bold**로 오버라이드합니다.
+`preview.tsx`의 `DOCS_TYPOGRAPHY_CSS`에서 관리합니다.
+
+```css
+.sbdocs-title {
+  font-family: 'Pretendard', sans-serif !important;
+  font-size: 36px !important;
+  font-weight: 700 !important;
+}
+.sbdocs h2, .sbdocs h3, .sbdocs h4 {
+  font-family: 'Pretendard', sans-serif !important;
+  font-weight: 700 !important;
+}
+```
 
 ---
 

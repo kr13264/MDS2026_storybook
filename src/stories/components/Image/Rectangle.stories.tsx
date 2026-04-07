@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 
 // ── Meta ───────────────────────────────────────────────────────────────────
 const meta: Meta<typeof ImageRect> = {
-  title: 'Components/Image/Rectangle',
+  title: 'Components/Images/Rectangle',
   component: ImageRect,
   tags: ['autodocs'],
   parameters: {
@@ -170,14 +170,15 @@ type Story = StoryObj<typeof ImageRect>;
 
 // ── Playground ─────────────────────────────────────────────────────────────
 export const Playground: Story = {
-  decorators: [(Story) => <div style={{ width: 320 }}><Story /></div>],
+  decorators: [(Story) => <div style={{ width: 148 }}><Story /></div>],
   args: {
     src: IMG_SRC,
-    ratio: '16:9',
+    ratio: '1:1',
     type: 'default',
     opacity: 'none',
     shadow: 'none',
     fit: 'cover',
+    radius: 'none',
   },
 };
 
@@ -193,8 +194,8 @@ export const Types: Story = {
             { type: 'noImage' as ImageRectType, src: undefined, label: 'noImage' },
             { type: 'placeHolder' as ImageRectType, src: undefined, label: 'placeHolder' },
           ]).map(({ type, src, label }) => (
-            <div key={type} style={{ width: 180 }}>
-              <ImageRect type={type} src={src} ratio="16:9" />
+            <div key={type} style={{ width: 148 }}>
+              <ImageRect type={type} src={src} ratio="1:1" radius="none" />
               <Caption>{label}</Caption>
             </div>
           ))}
@@ -245,12 +246,12 @@ export const Ratios: Story = {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'flex-start' }}>
           {(['1:1', '16:9', '3:2', '3:4', '3:4.5', '3:5'] as ImageRectRatio[]).map(ratio => (
             <div key={ratio} style={{ width: 140 }}>
-              <ImageRect src={IMG_SRC} ratio={ratio} />
+              <ImageRect src={IMG_SRC} ratio={ratio} radius="none" />
               <Caption>{ratio}</Caption>
             </div>
           ))}
           <div style={{ width: 140, height: 100 }}>
-            <ImageRect src={IMG_SRC} ratio="noFix" style={{ width: '100%', height: '100%' }} />
+            <ImageRect src={IMG_SRC} ratio="noFix" radius="none" style={{ width: '100%', height: '100%' }} />
             <Caption>noFix</Caption>
           </div>
         </div>
@@ -267,8 +268,8 @@ export const Opacities: Story = {
       <Block label="Opacity" desc="딤 레이어의 불투명도 수준">
         <Row gap={12}>
           {(['none', '3%', '40%'] as ImageRectOpacity[]).map(opacity => (
-            <div key={opacity} style={{ width: 200 }}>
-              <ImageRect src={IMG_SRC} ratio="16:9" opacity={opacity} />
+            <div key={opacity} style={{ width: 148 }}>
+              <ImageRect src={IMG_SRC} ratio="1:1" radius="none" opacity={opacity} />
               <Caption>{opacity}</Caption>
             </div>
           ))}
@@ -286,40 +287,9 @@ export const Shadows: Story = {
       <Block label="Shadow" desc="방향성 그라디언트 오버레이">
         <Row gap={12}>
           {(['none', 'up', 'down', 'up&down'] as ImageRectShadow[]).map(shadow => (
-            <div key={shadow} style={{ width: 200 }}>
-              <ImageRect src={IMG_SRC} ratio="16:9" shadow={shadow} />
+            <div key={shadow} style={{ width: 148 }}>
+              <ImageRect src={IMG_SRC} ratio="1:1" radius="none" shadow={shadow} />
               <Caption>{shadow}</Caption>
-            </div>
-          ))}
-        </Row>
-      </Block>
-    </div>
-  ),
-};
-
-// ── Contents Slots ─────────────────────────────────────────────────────────
-export const ContentsSlots: Story = {
-  name: 'Contents',
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Block label="label" desc="하단 오버레이 텍스트 레이블">
-        <div style={{ width: 240 }}>
-          <ImageRect src={IMG_SRC} ratio="16:9" opacity="40%" shadow="down" label="이미지 레이블 텍스트" />
-        </div>
-      </Block>
-
-      <Block label="icon" desc="우상단 아이콘 뱃지">
-        <div style={{ width: 240 }}>
-          <ImageRect src={IMG_SRC} ratio="16:9" icon />
-        </div>
-      </Block>
-
-      <Block label="fit" desc="object-fit 옵션 — 이미지 맞춤 방식">
-        <Row gap={12}>
-          {(['cover', 'contain', 'fill', 'scale-down'] as ImageRectFit[]).map(fit => (
-            <div key={fit} style={{ width: 180 }}>
-              <ImageRect src={IMG_SRC} ratio="16:9" fit={fit} />
-              <Caption>{fit}</Caption>
             </div>
           ))}
         </Row>
@@ -334,13 +304,13 @@ export const States: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <Block label="enabled" desc="기본 상태. 사용자가 인터랙션 가능한 경우">
-        <div style={{ width: 240 }}>
-          <ImageRect src={IMG_SRC} ratio="16:9" />
+        <div style={{ width: 148 }}>
+          <ImageRect src={IMG_SRC} ratio="1:1" radius="none" />
         </div>
       </Block>
       <Block label="disabled" desc="비활성 상태. opacity 0.35, pointer-events none">
-        <div style={{ width: 240 }}>
-          <ImageRect src={IMG_SRC} ratio="16:9" disabled />
+        <div style={{ width: 148 }}>
+          <ImageRect src={IMG_SRC} ratio="1:1" radius="none" disabled />
         </div>
       </Block>
     </div>
@@ -381,6 +351,7 @@ export const Matrix: Story = {
                         type={type}
                         src={type === 'default' ? IMG_SRC : undefined}
                         ratio={ratio}
+                        radius="none"
                       />
                     </div>
                   </td>
