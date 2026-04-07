@@ -27,7 +27,7 @@ const LayoutGuide = () => (
     margin: '0 auto',
     padding: '40px',
   }}>
-    <h1 style={{ fontSize: '24px', fontWeight: '800', margin: '0 0 8px', color: 'var(--color-neutral-foreground-default)', letterSpacing: '-0.5px' }}>
+    <h1 style={{ fontSize: '40px', fontWeight: '800', margin: '0 0 8px', color: 'var(--color-neutral-foreground-default)', letterSpacing: '-1px' }}>
       Layout System
     </h1>
     <p style={{ fontSize: '14px', color: 'var(--color-neutral-foreground-subtle-1)', margin: '0 0 40px', lineHeight: 1.6 }}>
@@ -36,7 +36,7 @@ const LayoutGuide = () => (
 
     {/* Breakpoints */}
     <section style={{ marginBottom: '48px' }}>
-      <h2 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 16px', color: 'var(--color-neutral-foreground-default)' }}>Breakpoints</h2>
+      <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 16px', color: 'var(--color-neutral-foreground-default)' }}>Breakpoints</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '12px' }}>
         {[
           { name: 'Base', size: '< 640px', prefix: '—', desc: '모바일 세로' },
@@ -63,7 +63,7 @@ const LayoutGuide = () => (
 
     {/* 12-column grid */}
     <section style={{ marginBottom: '48px' }}>
-      <h2 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 8px', color: 'var(--color-neutral-foreground-default)' }}>12 Column Grid</h2>
+      <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 8px', color: 'var(--color-neutral-foreground-default)' }}>12 Column Grid</h2>
       <p style={{ fontSize: '13px', color: 'var(--color-neutral-foreground-subtle-1)', margin: '0 0 16px' }}>
         <code style={{ background: 'var(--color-primary-background-subtle-1)', padding: '2px 6px', borderRadius: '4px', color: 'var(--color-primary-foreground-default)', fontSize: '11px' }}>
           grid grid-cols-12 gap-4
@@ -86,7 +86,7 @@ const LayoutGuide = () => (
 
     {/* Container sizes */}
     <section style={{ marginBottom: '48px' }}>
-      <h2 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 16px', color: 'var(--color-neutral-foreground-default)' }}>Container</h2>
+      <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 16px', color: 'var(--color-neutral-foreground-default)' }}>Container</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         {[
           { name: 'sm', width: '640px', usage: 'container sm:max-w-screen-sm' },
@@ -108,7 +108,7 @@ const LayoutGuide = () => (
 
     {/* Spacing */}
     <section>
-      <h2 style={{ fontSize: '16px', fontWeight: '700', margin: '0 0 16px', color: 'var(--color-neutral-foreground-default)' }}>Spacing Scale</h2>
+      <h2 style={{ fontSize: '20px', fontWeight: '700', margin: '0 0 16px', color: 'var(--color-neutral-foreground-default)' }}>Spacing Scale</h2>
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'flex-end' }}>
         {[1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24].map(n => (
           <div key={n} style={{ textAlign: 'center' }}>

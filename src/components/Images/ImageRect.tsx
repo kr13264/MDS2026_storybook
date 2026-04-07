@@ -21,11 +21,18 @@ const dimClasses: Record<ImageRectOpacity, string> = {
 // ── 그림자 그라디언트 (인라인 style 불가피 — 임의 그라디언트) ──────────────
 const shadowGradient: Record<ImageRectShadow, string[]> = {
   'none':   [],
-  'up':     ['linear-gradient(to bottom, rgba(0,0,0,.60) 0%, transparent 60%)'],
-  'down':   ['linear-gradient(to top, rgba(0,0,0,.60) 0%, transparent 60%)'],
+  'up':     [
+    'linear-gradient(to bottom, rgba(0,0,0,.20) 0%, transparent 60%)',
+    'rgba(0,0,0,0.08)',
+  ],
+  'down':   [
+    'linear-gradient(to top, rgba(0,0,0,.20) 0%, transparent 60%)',
+    'rgba(0,0,0,0.08)',
+  ],
   'up&down': [
-    'linear-gradient(to bottom, rgba(0,0,0,.60) 0%, transparent 60%)',
-    'linear-gradient(to top,   rgba(0,0,0,.60) 0%, transparent 60%)',
+    'linear-gradient(to bottom, rgba(0,0,0,.20) 0%, transparent 60%)',
+    'linear-gradient(to top, rgba(0,0,0,.20) 0%, transparent 60%)',
+    'rgba(0,0,0,0.08)',
   ],
 };
 

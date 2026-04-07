@@ -15,10 +15,11 @@ const sizeToken: Record<ChipSize, {
   paddingV: number;
   iconHeadSize: number;
   iconTailSize: number;
+  thumbnailSize: number;
   gap: number;
 }> = {
-  sm: { height: 32, fontSize: 13, paddingH: 12, paddingV: 6,  iconHeadSize: 14, iconTailSize: 10, gap: 4 },
-  md: { height: 36, fontSize: 14, paddingH: 14, paddingV: 8, iconHeadSize: 16, iconTailSize: 10, gap: 6 },
+  sm: { height: 32, fontSize: 14, paddingH: 10, paddingV: 6,  iconHeadSize: 14, iconTailSize: 10, thumbnailSize: 24, gap: 4 },
+  md: { height: 36, fontSize: 14, paddingH: 12, paddingV: 8, iconHeadSize: 16, iconTailSize: 10, thumbnailSize: 28, gap: 6 },
 };
 
 export const Chip = ({
@@ -29,6 +30,8 @@ export const Chip = ({
   disabled = false,
   multiSelect = false,
   iconHead,
+  iconTail,
+  thumbnail,
   onClick,
   onRemove,
   className = '',
@@ -60,9 +63,9 @@ export const Chip = ({
         background: bg,
         color: textColor,
         fontSize: tk.fontSize,
-        fontWeight: 500,
+        fontWeight: 400,
         fontFamily: 'Pretendard, -apple-system, sans-serif',
-        letterSpacing: '-0.2px',
+        letterSpacing: '-0.3px',
         lineHeight: 1,
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity,
@@ -72,8 +75,24 @@ export const Chip = ({
         flexShrink: 0,
       }}
     >
-      {/* 좌측 아이콘 */}
-      {type !== 'iconOnly' && iconHead && (
+      {/* 썸네일 이미지 */}
+      {type === 'thumbnail' && thumbnail && (
+        <span style={{
+          width: tk.thumbnailSize, height: tk.thumbnailSize,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          flexShrink: 0,
+        }}>
+          <img
+            src={thumbnail}
+            alt=""
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+        </span>
+      )}
+
+      {/* 좌측 아이콘 (label, thumbnail 타입) */}
+      {type !== 'iconOnly' && type !== 'thumbnail' && iconHead && (
         <span style={{
           width: tk.iconHeadSize, height: tk.iconHeadSize,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -95,8 +114,19 @@ export const Chip = ({
       )}
 
       {/* 레이블 */}
-      {type === 'label' && (
+      {(type === 'label' || type === 'thumbnail') && (
         <span>{label}</span>
+      )}
+
+      {/* 우측 아이콘 (iconTail) */}
+      {iconTail && !showClose && (
+        <span style={{
+          width: tk.iconTailSize, height: tk.iconTailSize,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: iconColor, flexShrink: 0,
+        }}>
+          {iconTail}
+        </span>
       )}
 
       {/* 우측 닫기 (multiSelect 선택 시) */}

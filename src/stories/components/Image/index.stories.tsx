@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ImageRect, ImageCircle, ImagePlace, ImageOpacity, ImageShadow } from '@/components/Images';
+import { ImageRect, ImageCircle, ImagePlace, ImageOpacity, ImageShadow, ImageThumbnail } from '@/components/Images';
 
 const IMG_SRC = 'https://images.unsplash.com/photo-1596367407372-96cb88503db6?q=80&w=800&auto=format&fit=crop';
 
@@ -47,6 +47,7 @@ Rectangle, Circle 형태와 Place·Opacity·Shadow 레이어 컴포넌트로 구
 |-----------|-------------|-------|
 | \`Rectangle\` | 비율·딤·그림자·레이블을 조합한 이미지 래퍼 | 콘텐츠 썸네일, 배너 |
 | \`Circle\` | 원형 이미지 | 프로필·아바타·채널 썸네일 |
+| \`Thumbnail\` | 슬롯 오버레이가 있는 정사각형 이미지 (Image·Media·Gallery) | 피드 카드, 미디어 그리드 |
 | \`Place\` | 이미지 배치 상태 (default·noImage·placeHolder) | 이미지 로딩 상태 표현 |
 | \`Opacity\` | 검정 딤 레이어 (none·3%·40%) | 이미지 위 텍스트 가독성 확보 |
 | \`Shadow\` | 방향성 그라디언트 오버레이 | 이미지 엣지 처리 |
@@ -103,6 +104,21 @@ export const Overview: Story = {
             <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <ImageCircle src={IMG_SRC} size={size} />
               <Caption>{size}</Caption>
+            </div>
+          ))}
+        </Row>
+      </Block>
+
+      <Block label="Thumbnail" desc="슬롯 오버레이가 있는 정사각형 이미지. Image · Media · Gallery 타입">
+        <Row gap={12}>
+          {([
+            { type: 'image' as const, label: 'image' },
+            { type: 'media' as const, label: 'media' },
+            { type: 'gallery' as const, label: 'gallery' },
+          ]).map(({ type, label }) => (
+            <div key={type} style={{ width: 148 }}>
+              <ImageThumbnail src={IMG_SRC} type={type} radius={12} />
+              <Caption>{label}</Caption>
             </div>
           ))}
         </Row>

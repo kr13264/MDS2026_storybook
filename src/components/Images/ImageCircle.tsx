@@ -106,6 +106,11 @@ export const ImageCircle = ({
         alt={alt}
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
+      {/* 3% dim overlay */}
+      <div
+        style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'rgba(0,0,0,0.03)' }}
+        aria-hidden="true"
+      />
     </div>
   );
 };

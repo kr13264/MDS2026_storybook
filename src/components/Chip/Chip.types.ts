@@ -1,4 +1,4 @@
-export type ChipType = 'label' | 'iconOnly';
+export type ChipType = 'label' | 'iconOnly' | 'thumbnail';
 export type ChipSize = 'sm' | 'md';
 
 export interface ChipProps {
@@ -6,7 +6,7 @@ export interface ChipProps {
   type?: ChipType;
   /** 사이즈 */
   size?: ChipSize;
-  /** 레이블 텍스트 (type=label) */
+  /** 레이블 텍스트 (type=label | thumbnail) */
   label?: string;
   /** 선택 상태 */
   selected?: boolean;
@@ -16,6 +16,10 @@ export interface ChipProps {
   multiSelect?: boolean;
   /** 좌측 아이콘 */
   iconHead?: React.ReactNode;
+  /** 우측 아이콘 */
+  iconTail?: React.ReactNode;
+  /** 썸네일 이미지 URL (type=thumbnail) */
+  thumbnail?: string;
   /** 클릭 핸들러 */
   onClick?: () => void;
   /** 닫기/제거 핸들러 (multiSelect 모드) */

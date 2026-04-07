@@ -5,7 +5,7 @@ const token = (s: string) => (
   <code style={{ fontSize: '10px', color: 'var(--color-primary-foreground-default)', background: 'var(--color-primary-background-subtle-1)', padding: '1px 5px', borderRadius: '3px', fontFamily: 'monospace' }}>{s}</code>
 );
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <h2 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', margin: '0 0 20px', letterSpacing: '-0.2px' }}>{children}</h2>
+  <h2 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', margin: '0 0 20px', letterSpacing: '-0.3px' }}>{children}</h2>
 );
 
 // ── Style Guide ─────────────────────────────────────────────────────────────
@@ -13,7 +13,7 @@ const StyleGuide = () => (
   <div style={{ background: 'var(--color-neutral-background-default)', minHeight: '100vh' }}>
   <div style={{ fontFamily: "'Pretendard', -apple-system, sans-serif", maxWidth: '960px', margin: '0 auto', padding: '40px' }}>
 
-    <h1 style={{ fontSize: '24px', fontWeight: 800, margin: '0 0 8px', color: 'var(--color-neutral-foreground-default)', letterSpacing: '-0.5px' }}>
+    <h1 style={{ fontSize: '40px', fontWeight: 800, margin: '0 0 8px', color: 'var(--color-neutral-foreground-default)', letterSpacing: '-1px' }}>
       Style Guide
     </h1>
     <p style={{ fontSize: '14px', color: 'var(--color-neutral-foreground-subtle-1)', margin: '0 0 48px', lineHeight: 1.6 }}>

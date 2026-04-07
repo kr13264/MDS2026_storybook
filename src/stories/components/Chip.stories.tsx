@@ -14,6 +14,11 @@ const IcStar = () => (
     <path d="M8 2l1.5 3.5 3.5.5-2.5 2.5.5 3.5L8 10.5 5 12l.5-3.5L3 6l3.5-.5L8 2z"/>
   </svg>
 );
+const IcArrow = () => (
+  <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" width="100%" height="100%">
+    <path d="M3.5 2l3.5 3-3.5 3"/>
+  </svg>
+);
 
 // ── 레이아웃 헬퍼 ─────────────────────────────────────────────────────────────
 const Row = ({ children, gap = 8 }: { children: React.ReactNode; gap?: number }) => (
@@ -58,13 +63,14 @@ const meta: Meta<typeof Chip> = {
 |------|-------------|
 | \`label\` | 텍스트 레이블 칩 (기본) |
 | \`iconOnly\` | 아이콘만 표시 |
+| \`thumbnail\` | 좌측에 원형 썸네일 이미지 + 텍스트 |
 
 ### Size
 
 | Size | Height | Font |
 |------|--------|------|
-| \`sm\` | 32px | 13px |
-| \`md\` | 40px | 14px |
+| \`sm\` | 32px | 14px |
+| \`md\` | 36px | 14px |
 
 ### State
 
@@ -82,6 +88,8 @@ import { Chip } from '@/components/Chip';
 <Chip label="동영상" selected />
 <Chip label="태그" multiSelect selected onRemove={() => {}} />
 <Chip type="iconOnly" iconHead={<IcSearch />} />
+<Chip label="레이블" iconTail={<IcArrow />} />
+<Chip type="thumbnail" label="프로필" thumbnail="/avatar.jpg" />
 \`\`\`
         `.trim(),
       },
@@ -90,7 +98,7 @@ import { Chip } from '@/components/Chip';
   argTypes: {
     type: {
       control: 'select',
-      options: ['label', 'iconOnly'] satisfies ChipType[],
+      options: ['label', 'iconOnly', 'thumbnail'] satisfies ChipType[],
       description: '칩 타입',
       table: { type: { summary: 'ChipType' }, defaultValue: { summary: 'label' } },
     },
@@ -105,6 +113,8 @@ import { Chip } from '@/components/Chip';
     disabled:    { control: 'boolean', description: '비활성 상태', table: { defaultValue: { summary: 'false' } } },
     multiSelect: { control: 'boolean', description: '다중 선택 모드 (선택 시 닫기 아이콘)', table: { defaultValue: { summary: 'false' } } },
     iconHead:    { control: false, description: '좌측 아이콘 (ReactNode)' },
+    iconTail:    { control: false, description: '우측 아이콘 (ReactNode)' },
+    thumbnail:   { control: 'text', description: '썸네일 이미지 URL (type=thumbnail)' },
   },
 };
 
@@ -141,9 +151,12 @@ export const Sizes: Story = {
             <tbody>
               {[
                 ['Height', '32px', '36px'],
-                ['Font size', '13px', '14px'],
-                ['Padding H', '12px', '14px'],
+                ['Font size', '14px', '14px'],
+                ['Font weight', '400', '400'],
+                ['Padding H', '10px', '12px'],
                 ['Icon size', '14px', '16px'],
+                ['Thumbnail', '24px', '28px'],
+                ['Radius', '999', '999'],
               ].map(row => (
                 <tr key={row[0]} style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>
                   {row.map((cell, i) => (
@@ -215,6 +228,27 @@ export const Contents: Story = {
           <Chip type="iconOnly" iconHead={<IcSearch />} />
           <Chip type="iconOnly" iconHead={<IcStar />} selected />
           <Chip type="iconOnly" iconHead={<IcSearch />} disabled />
+        </Row>
+      </Block>
+      <Block label="iconTail" desc="레이블 우측에 보조 아이콘을 표시합니다.">
+        <Row gap={8}>
+          <Chip label="더보기" iconTail={<IcArrow />} />
+          <Chip label="더보기" iconTail={<IcArrow />} selected />
+          <Chip label="검색" iconHead={<IcSearch />} iconTail={<IcArrow />} />
+        </Row>
+      </Block>
+      <Block label="thumbnail" desc="좌측에 원형 썸네일 이미지를 표시합니다. (sm=24px, md=28px)">
+        <Row gap={8}>
+          <Chip type="thumbnail" label="프로필" size="sm" thumbnail="https://i.pravatar.cc/48?u=a" />
+          <Chip type="thumbnail" label="프로필" size="md" thumbnail="https://i.pravatar.cc/56?u=b" />
+          <Chip type="thumbnail" label="프로필" size="sm" thumbnail="https://i.pravatar.cc/48?u=c" selected />
+          <Chip type="thumbnail" label="프로필" size="md" thumbnail="https://i.pravatar.cc/56?u=d" selected />
+        </Row>
+      </Block>
+      <Block label="thumbnail + multiSelect" desc="썸네일 칩의 다중 선택 모드.">
+        <Row gap={8}>
+          <Chip type="thumbnail" label="사용자" size="sm" thumbnail="https://i.pravatar.cc/48?u=e" multiSelect selected />
+          <Chip type="thumbnail" label="사용자" size="md" thumbnail="https://i.pravatar.cc/56?u=f" multiSelect selected />
         </Row>
       </Block>
       <Block label="multiSelect" desc="선택 시 우측에 닫기(×) 아이콘이 표시됩니다.">

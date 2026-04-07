@@ -64,6 +64,7 @@ const preview: Preview = {
           'Foundation',
           'Icon',
           'Components',
+          ['Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'], '*'],
           ['Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'], '*'],
           'Templates',
           '*',

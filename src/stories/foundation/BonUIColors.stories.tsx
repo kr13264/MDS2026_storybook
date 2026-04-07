@@ -21,7 +21,7 @@ const Swatch = ({ name, variable, tailwind }: { name: string; variable: string; 
 // ── Section ─────────────────────────────────────────────────────────────────
 const Section = ({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) => (
   <div style={{ marginBottom: '48px' }}>
-    <h2 style={{ fontSize: '15px', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', margin: '0 0 4px', letterSpacing: '-0.2px' }}>{title}</h2>
+    <h2 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', margin: '0 0 4px', letterSpacing: '-0.3px' }}>{title}</h2>
     {description && <p style={{ fontSize: '13px', color: 'var(--color-neutral-foreground-subtle-1)', margin: '0 0 16px', lineHeight: 1.6 }}>{description}</p>}
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px', marginTop: '16px' }}>
       {children}
@@ -35,7 +35,7 @@ const ColorOverview = () => (
   <div style={{ fontFamily: "'Pretendard', sans-serif", maxWidth: '960px', margin: '0 auto', padding: '40px' }}>
 
     <div style={{ marginBottom: '40px' }}>
-      <h1 style={{ fontSize: '24px', fontWeight: 800, margin: '0 0 8px', letterSpacing: '-0.5px', color: 'var(--color-neutral-foreground-default)' }}>
+      <h1 style={{ fontSize: '40px', fontWeight: 800, margin: '0 0 8px', letterSpacing: '-1px', color: 'var(--color-neutral-foreground-default)' }}>
         BON UI Color Tokens
       </h1>
       <p style={{ fontSize: '14px', color: 'var(--color-neutral-foreground-subtle-1)', margin: 0, lineHeight: 1.6 }}>

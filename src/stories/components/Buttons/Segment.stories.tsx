@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { ButtonSegment } from '@/components/Buttons';
-import type { ButtonSegmentShape, ButtonSegmentType, ButtonSegmentSize } from '@/components/Buttons';
+import type { ButtonSegmentShape, ButtonSegmentType } from '@/components/Buttons';
 
 // ── 레이아웃 헬퍼 ──────────────────────────────────────────────────────────
 const Row = ({ children, gap = 16 }: { children: React.ReactNode; gap?: number }) => (
@@ -24,7 +24,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
   <p style={{ fontFamily: 'Pretendard, sans-serif', fontSize: 11, color: 'var(--color-neutral-foreground-subtle-3)', margin: '6px 0 0', textAlign: 'center' }}>{children}</p>
 );
 
-// ── Controlled wrapper for stories ─────────────────────────────────────────
+// ── Controlled wrapper ──────────────────────────────────────────────────────
 const SegmentDemo = (props: Omit<React.ComponentProps<typeof ButtonSegment>, 'value' | 'onChange'> & { defaultValue?: string }) => {
   const [val, setVal] = useState(props.defaultValue ?? props.options[0]?.value ?? '');
   return <ButtonSegment {...props} value={val} onChange={setVal} />;
@@ -41,7 +41,7 @@ const meta: Meta<typeof ButtonSegment> = {
       description: {
         component: `
 동일 위계의 옵션 중 단일 선택이 필요한 경우 사용하는 세그먼트 버튼입니다.
-2~4개의 옵션을 지원하며, **half**(콘텐츠 폭)와 **full**(균등 분할) 두 가지 너비 유형을 제공합니다.
+2~4개의 옵션을 지원하며, **half**(텍스트+구분선)와 **full**(균등 분할) 두 가지 너비 유형을 제공합니다.
 
 ---
 
@@ -49,17 +49,25 @@ const meta: Meta<typeof ButtonSegment> = {
 
 ### Type
 
-| Type | Description |
-|------|-------------|
-| \`half\` | 각 세그먼트의 너비가 콘텐츠에 맞게 결정 (기본) |
-| \`full\` | 컨테이너 너비를 세그먼트 수로 균등 분할 |
+| Type | Height | Description |
+|------|--------|-------------|
+| \`half\` | 44px | 텍스트 폭 기반. 항목 사이 1px 구분선 |
+| \`full\` | 40px | 컨테이너 너비를 항목 수로 균등 분할. 각 항목이 개별 border |
 
 ### Shape
 
-| Shape | Description |
-|-------|-------------|
-| \`square\` | 사각형 — 일반 레이아웃 (기본) |
-| \`round\`  | 원형 — 필 형태의 세그먼트 |
+| Shape | borderRadius | Description |
+|-------|-------------|-------------|
+| \`square\` | 8px | 사각형 — 일반 레이아웃 (기본) |
+| \`round\`  | 9999px | 원형(Pill) |
+
+### Line (항목 수)
+
+| Line | Description |
+|------|-------------|
+| 2 | 옵션 2개 |
+| 3 | 옵션 3개 |
+| 4 | 옵션 4개 |
 
 \`\`\`tsx
 import { ButtonSegment } from '@/components/Buttons';
@@ -87,12 +95,6 @@ import { ButtonSegment } from '@/components/Buttons';
       description: '너비 유형',
       table: { type: { summary: 'ButtonSegmentType' }, defaultValue: { summary: 'half' } },
     },
-    size: {
-      control: 'select',
-      options: ['sm', 'md', 'lg'] satisfies ButtonSegmentSize[],
-      description: '높이 기준 사이즈',
-      table: { type: { summary: 'ButtonSegmentSize' }, defaultValue: { summary: 'md' } },
-    },
     disabled: { control: 'boolean', description: '전체 비활성', table: { defaultValue: { summary: 'false' } } },
     value: { control: false },
     onChange: { control: false },
@@ -105,6 +107,7 @@ type Story = StoryObj<typeof ButtonSegment>;
 
 // ── Playground ─────────────────────────────────────────────────────────────
 export const Playground: Story = {
+  decorators: [(Story) => <div style={{ width: 320 }}><Story /></div>],
   render: (args) => {
     const [val, setVal] = useState('all');
     return (
@@ -123,7 +126,6 @@ export const Playground: Story = {
   args: {
     shape: 'square',
     type: 'half',
-    size: 'md',
     disabled: false,
   },
 };
@@ -133,8 +135,8 @@ export const Types: Story = {
   name: 'Type',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Block label="half" desc="각 세그먼트의 너비가 콘텐츠에 맞게 자동 결정됩니다.">
-        <Row>
+      <Block label="half" desc="텍스트 폭 기반, 항목 사이 1px 구분선. 높이 44px.">
+        <Row gap={12}>
           <SegmentDemo
             type="half"
             options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }]}
@@ -149,7 +151,7 @@ export const Types: Story = {
           />
         </Row>
       </Block>
-      <Block label="full" desc="컨테이너 너비를 세그먼트 수로 균등 분할합니다.">
+      <Block label="full" desc="컨테이너 너비를 항목 수로 균등 분할. 각 항목이 개별 border. 높이 40px.">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 320 }}>
           <SegmentDemo
             type="full"
@@ -174,20 +176,32 @@ export const Shapes: Story = {
   name: 'Shape',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Block label="square" desc="사각형 형태. 일반 레이아웃에 사용합니다.">
-        <Row>
+      <Block label="square" desc="borderRadius 8px. 일반 레이아웃에 사용합니다.">
+        <Row gap={12}>
           <SegmentDemo
-            shape="square"
+            shape="square" type="half"
             options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]}
           />
+          <div style={{ width: 240 }}>
+            <SegmentDemo
+              shape="square" type="full"
+              options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]}
+            />
+          </div>
         </Row>
       </Block>
-      <Block label="round" desc="원형(Pill) 형태. 필터 또는 태그형 선택에 사용합니다.">
-        <Row>
+      <Block label="round" desc="borderRadius 9999px. Pill 형태.">
+        <Row gap={12}>
           <SegmentDemo
-            shape="round"
+            shape="round" type="half"
             options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]}
           />
+          <div style={{ width: 240 }}>
+            <SegmentDemo
+              shape="round" type="full"
+              options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]}
+            />
+          </div>
         </Row>
       </Block>
     </div>
@@ -199,42 +213,42 @@ export const Lines: Story = {
   name: 'Line',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-      <Block label="2개" desc="line=2">
-        <Row>
-          <SegmentDemo options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }]} />
-          <SegmentDemo shape="round" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }]} />
+      <Block label="2개">
+        <Row gap={24}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <SegmentDemo type="half" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }]} />
+            <Caption>half</Caption>
+          </div>
+          <div style={{ width: 240, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <SegmentDemo type="full" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }]} />
+            <Caption>full</Caption>
+          </div>
         </Row>
       </Block>
-      <Block label="3개" desc="line=3">
-        <Row>
-          <SegmentDemo options={[{ value: 'a', label: '인기' }, { value: 'b', label: '최신' }, { value: 'c', label: '추천' }]} />
-          <SegmentDemo shape="round" options={[{ value: 'a', label: '인기' }, { value: 'b', label: '최신' }, { value: 'c', label: '추천' }]} />
+      <Block label="3개">
+        <Row gap={24}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <SegmentDemo type="half" options={[{ value: 'a', label: '인기' }, { value: 'b', label: '최신' }, { value: 'c', label: '추천' }]} />
+            <Caption>half</Caption>
+          </div>
+          <div style={{ width: 240, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <SegmentDemo type="full" options={[{ value: 'a', label: '인기' }, { value: 'b', label: '최신' }, { value: 'c', label: '추천' }]} />
+            <Caption>full</Caption>
+          </div>
         </Row>
       </Block>
-      <Block label="4개" desc="line=4">
-        <Row>
-          <SegmentDemo options={[{ value: 'a', label: '1일' }, { value: 'b', label: '1주' }, { value: 'c', label: '1개월' }, { value: 'd', label: '3개월' }]} />
-          <SegmentDemo shape="round" options={[{ value: 'a', label: '1일' }, { value: 'b', label: '1주' }, { value: 'c', label: '1개월' }, { value: 'd', label: '3개월' }]} />
+      <Block label="4개">
+        <Row gap={24}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <SegmentDemo type="half" options={[{ value: 'a', label: '1일' }, { value: 'b', label: '1주' }, { value: 'c', label: '1개월' }, { value: 'd', label: '3개월' }]} />
+            <Caption>half</Caption>
+          </div>
+          <div style={{ width: 320, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <SegmentDemo type="full" options={[{ value: 'a', label: '1일' }, { value: 'b', label: '1주' }, { value: 'c', label: '1개월' }, { value: 'd', label: '3개월' }]} />
+            <Caption>full</Caption>
+          </div>
         </Row>
       </Block>
-    </div>
-  ),
-};
-
-// ── Size ───────────────────────────────────────────────────────────────────
-export const Sizes: Story = {
-  name: 'Size',
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-      {(['sm', 'md', 'lg'] as ButtonSegmentSize[]).map(s => (
-        <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <SegmentDemo
-            size={s}
-            options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]}
-          />
-          <Caption>{s}</Caption>
-        </div>
-      ))}
     </div>
   ),
 };
@@ -245,19 +259,42 @@ export const States: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <Block label="enabled" desc="기본 상태.">
-        <SegmentDemo options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]} />
+        <Row gap={12}>
+          <SegmentDemo type="half" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]} />
+          <div style={{ width: 240 }}>
+            <SegmentDemo type="full" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]} />
+          </div>
+        </Row>
       </Block>
-      <Block label="disabled" desc="전체 비활성 상태.">
-        <SegmentDemo options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]} disabled />
+      <Block label="disabled" desc="전체 비활성 상태. opacity 0.4, pointer-events none.">
+        <Row gap={12}>
+          <SegmentDemo type="half" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]} disabled />
+          <div style={{ width: 240 }}>
+            <SegmentDemo type="full" options={[{ value: 'a', label: '전체' }, { value: 'b', label: '구독' }, { value: 'c', label: '최신' }]} disabled />
+          </div>
+        </Row>
       </Block>
-      <Block label="item disabled" desc="특정 옵션만 비활성 상태.">
-        <SegmentDemo
-          options={[
-            { value: 'a', label: '전체' },
-            { value: 'b', label: '구독', disabled: true },
-            { value: 'c', label: '최신' },
-          ]}
-        />
+      <Block label="item disabled" desc="특정 항목만 비활성 상태.">
+        <Row gap={12}>
+          <SegmentDemo
+            type="half"
+            options={[
+              { value: 'a', label: '전체' },
+              { value: 'b', label: '구독', disabled: true },
+              { value: 'c', label: '최신' },
+            ]}
+          />
+          <div style={{ width: 240 }}>
+            <SegmentDemo
+              type="full"
+              options={[
+                { value: 'a', label: '전체' },
+                { value: 'b', label: '구독', disabled: true },
+                { value: 'c', label: '최신' },
+              ]}
+            />
+          </div>
+        </Row>
       </Block>
     </div>
   ),

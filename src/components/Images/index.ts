@@ -12,3 +12,6 @@ export type { ImageShadowProps, ImageShadowDirection } from './ImageShadow';
 
 export { ImageCircle } from './ImageCircle';
 export type { ImageCircleProps, ImageCircleType, ImageCircleSize } from './ImageCircle';
+
+export { ImageThumbnail } from './ImageThumbnail';
+export type { ImageThumbnailProps, ImageThumbnailType, ImageThumbnailRadius } from './ImageThumbnail';

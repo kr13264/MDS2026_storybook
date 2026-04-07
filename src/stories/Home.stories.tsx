@@ -23,33 +23,50 @@ const scopeItems = [
     name: 'Foundations (BON UI)',
     desc: [
       '디자인 시스템의 시각적 기반을 구성하는 핵심 요소의 집합입니다.',
-      'Color, Typography 등 모든 Component와 Module에 공통으로 적용되는 디자인 원칙과 토큰을 정의합니다.',
+      'Color, Typography, Spacing, Elevation 등 모든 Component와 Items에 공통으로 적용되는 디자인 원칙과 토큰을 정의합니다.',
+      'Assets을 포함한 모든 레벨의 구성요소는 Foundations 토큰을 기반으로 작동하며, 임의 값 사용은 허용하지 않습니다.',
     ],
-    disabled: false,
+    note: 'BON UI에서 제공하는 토큰을 참조하며, 별도 정의 없이 BON UI 가이드라인을 준수합니다.',
   },
   {
-    name: 'Layout',
+    name: 'Assets',
     desc: [
-      '화면을 구성하는 공간적 구조와 배치 규칙을 정의하는 체계입니다.',
-      'Grid, Breakpoint, Container 등 콘텐츠가 화면 내에서 정렬되고 반응하는 방식에 대한 기준을 제공합니다.',
+      '시스템 전반에서 참조되는 시각적 리소스의 집합입니다.',
+      'Component나 Items처럼 상태(State)나 인터랙션을 갖지 않으며, 독립적으로 의미를 완성하는 정적 자원으로 관리됩니다.',
+      '자체 제작 및 유지 관리하며, Foundations 토큰을 준수하여 제작합니다.',
     ],
-    disabled: false,
+    subTable: {
+      headers: ['유형', '설명'],
+      rows: [
+        ['Icons', '서비스 전용 아이콘 세트. 기능과 맥락을 기준으로 분류 및 네이밍하여 관리합니다.'],
+      ],
+    },
   },
   {
     name: 'Components',
     desc: [
       '시스템과 상호 작용하는 가장 작은 단위의 구성요소입니다.',
+      '독립적으로 사용되거나 Item 구성의 기본 단위로 활용됩니다.',
       '임의 편집이 불가하며, 규정된 가이드라인을 준수하여 활용합니다.',
     ],
-    disabled: false,
   },
   {
-    name: 'Modules',
+    name: 'Items',
     desc: [
       '하나 이상의 Component가 조합되어 특정 기능 또는 콘텐츠 영역을 구성하는 단위입니다.',
-      '서비스의 맥락에 따라 Component를 조합하여 구성되며, 구성 방식은 가이드라인 내 허용 범위를 준수합니다.',
+      '서비스의 맥락과 레이아웃 방향에 따라 아래 세 가지 유형으로 구분하며, 각 유형의 구성 방식은 가이드라인 내 허용 범위를 준수합니다.',
+      '항목의 내부 구성은 Component의 조합으로 자유롭게 정의되며, 섬네일, 텍스트, 아이콘, 배지, 버튼 등 다양한 요소로 구성될 수 있습니다.',
+      'Items 레벨은 항목의 내부 구조가 아닌 배열 방향과 레이아웃 패턴을 정의합니다.',
     ],
-    disabled: true,
+    subTable: {
+      headers: ['유형', '배열 방향', '설명', '주요 활용 사례'],
+      rows: [
+        ['ItemsVert', '세로', '항목들이 수직 방향으로 나열되는 단위', '피드, 리스트, 수직 스크롤 영역'],
+        ['ItemsHorz', '가로', '항목들이 수평 방향으로 나열되는 단위', '캐러셀, 수평 스크롤 영역, 콘텐츠 탐색·추천'],
+        ['ItemsGrid', '격자', '항목들이 격자 구조로 나열되는 단위', '갤러리, 상품 목록'],
+      ],
+    },
+    note: '항목의 내부 구조는 Component 조합 규칙을 따릅니다.',
   },
 ];
 
@@ -135,121 +152,89 @@ const HomePage = () => (
       {/* ── 범위 ── */}
       <div style={{ marginBottom: '48px' }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-neutral-foreground-default)', margin: '0 0 16px', letterSpacing: '-0.3px' }}>범위</h2>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ borderCollapse: 'collapse', width: '100%', fontSize: 13, border: '1px solid var(--color-neutral-stroke-divider)', borderRadius: 8, overflow: 'hidden' }}>
-            <thead>
-              <tr style={{ background: 'var(--color-neutral-background-raised-1)' }}>
-                <th style={{ padding: '10px 20px', textAlign: 'center', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', borderBottom: '1px solid var(--color-neutral-stroke-divider)', whiteSpace: 'nowrap', width: '160px' }}>Category</th>
-                <th style={{ padding: '10px 20px', textAlign: 'center', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {scopeItems.map((item) => (
-                <tr key={item.name} style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)', background: 'var(--color-neutral-background-default)' }}>
-                  <td style={{ padding: '14px 20px', fontFamily: 'monospace', fontSize: 12, color: item.disabled ? 'var(--color-neutral-foreground-disabled)' : 'var(--color-neutral-foreground-default)', verticalAlign: 'top', whiteSpace: 'nowrap', borderRight: '1px solid var(--color-neutral-stroke-divider)' }}>{item.name}</td>
-                  <td style={{ padding: '14px 20px', verticalAlign: 'top' }}>
-                    {item.desc.map((d, i) => (
-                      <p key={i} style={{ margin: i === 0 ? '0 0 4px' : 0, fontSize: 13, color: item.disabled ? 'var(--color-neutral-foreground-disabled)' : (i === 0 ? 'var(--color-neutral-foreground-default)' : 'var(--color-neutral-foreground-subtle-1)'), lineHeight: 1.6 }}>{d}</p>
-                    ))}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {scopeItems.map((item) => (
+            <div key={item.name} style={{
+              border: '1px solid var(--color-neutral-stroke-divider)',
+              borderRadius: 10, overflow: 'hidden',
+              background: 'var(--color-neutral-background-default)',
+            }}>
+              <div style={{
+                padding: '14px 20px',
+                background: 'var(--color-neutral-background-raised-1)',
+                borderBottom: '1px solid var(--color-neutral-stroke-divider)',
+              }}>
+                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: 'var(--color-neutral-foreground-default)' }}>{item.name}</h3>
+              </div>
+              <div style={{ padding: '16px 20px' }}>
+                <ul style={{ margin: 0, paddingLeft: 18, listStyle: 'disc' }}>
+                  {item.desc.map((d, i) => (
+                    <li key={i} style={{ fontSize: 13, color: 'var(--color-neutral-foreground-subtle-1)', lineHeight: 1.7, marginBottom: i < item.desc.length - 1 ? 4 : 0 }}>{d}</li>
+                  ))}
+                </ul>
+                {'note' in item && item.note && (
+                  <div style={{
+                    marginTop: 12, padding: '10px 14px', borderRadius: 6,
+                    background: 'var(--color-neutral-background-raised-1)',
+                    fontSize: 12, color: 'var(--color-neutral-foreground-subtle-2)', lineHeight: 1.6,
+                    borderLeft: '3px solid var(--color-neutral-stroke-divider)',
+                  }}>{item.note}</div>
+                )}
+                {'subTable' in item && item.subTable && (
+                  <table style={{
+                    marginTop: 12, borderCollapse: 'collapse', width: '100%', fontSize: 12,
+                    border: '1px solid var(--color-neutral-stroke-divider)', borderRadius: 6, overflow: 'hidden',
+                  }}>
+                    <thead>
+                      <tr style={{ background: 'var(--color-neutral-background-raised-1)' }}>
+                        {item.subTable.headers.map((h) => (
+                          <th key={h} style={{ padding: '8px 12px', textAlign: 'left', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', borderBottom: '1px solid var(--color-neutral-stroke-divider)', whiteSpace: 'nowrap' }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {item.subTable.rows.map((row, ri) => (
+                        <tr key={ri} style={{ borderBottom: ri < item.subTable!.rows.length - 1 ? '1px solid var(--color-neutral-stroke-divider)' : 'none' }}>
+                          {row.map((cell, ci) => (
+                            <td key={ci} style={{ padding: '8px 12px', color: ci === 0 ? 'var(--color-neutral-foreground-default)' : 'var(--color-neutral-foreground-subtle-1)', fontFamily: ci === 0 ? 'monospace' : 'inherit', fontSize: ci === 0 ? 11 : 12, verticalAlign: 'top' }}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* ── 활용 ── */}
       <div style={{ marginBottom: '48px' }}>
         <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--color-neutral-foreground-default)', margin: '0 0 16px', letterSpacing: '-0.3px' }}>활용</h2>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ borderCollapse: 'collapse', width: '100%', fontSize: 13, border: '1px solid var(--color-neutral-stroke-divider)', borderRadius: 8, overflow: 'hidden' }}>
-            <thead>
-              <tr style={{ background: 'var(--color-neutral-background-raised-1)' }}>
-                <th style={{ padding: '10px 20px', textAlign: 'center', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', borderBottom: '1px solid var(--color-neutral-stroke-divider)', whiteSpace: 'nowrap', width: '120px' }}>Category</th>
-                <th style={{ padding: '10px 20px', textAlign: 'center', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>Guidelines</th>
-              </tr>
-            </thead>
-            <tbody>
-              {usageItems.map((section) => (
-                <tr key={section.name} style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)', background: 'var(--color-neutral-background-default)' }}>
-                  <td style={{ padding: '14px 20px', fontFamily: 'monospace', fontSize: 12, color: 'var(--color-neutral-foreground-default)', verticalAlign: 'top', whiteSpace: 'nowrap', borderRight: '1px solid var(--color-neutral-stroke-divider)' }}>{section.name}</td>
-                  <td style={{ padding: '14px 20px', verticalAlign: 'top' }}>
-                    {section.items.map((d, i) => (
-                      <p key={i} style={{ margin: i < section.items.length - 1 ? '0 0 6px' : 0, fontSize: 13, color: 'var(--color-neutral-foreground-subtle-1)', lineHeight: 1.6 }}>• {d}</p>
-                    ))}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ── 시스템 구성 ── */}
-      <div style={{ marginBottom: '48px' }}>
-        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: 'var(--color-neutral-foreground-subtle-3)', margin: '0 0 16px' }}>System</p>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ borderCollapse: 'collapse', width: '100%', fontSize: 13 }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>
-                {['Section', 'Description', 'Status'].map(h => (
-                  <th key={h} style={{ padding: '8px 16px 8px 0', textAlign: 'left', fontWeight: 700, color: 'var(--color-neutral-foreground-subtle-1)', whiteSpace: 'nowrap' }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { title: 'Foundation', desc: 'BON UI 컬러 토큰, 레이아웃 그리드, 타이포그래피, 그라디언트 등 디자인의 기반 요소를 정의합니다.', status: 'Live' },
-                { title: 'Icon',       desc: '서비스 전반에서 사용하는 아이콘 세트입니다.', status: 'Coming Soon' },
-                { title: 'Components', desc: 'Badge, Button, Chip, Divider, Image, Profile 등 재사용 가능한 UI 컴포넌트를 제공합니다.', status: 'Live' },
-                { title: 'Templates',  desc: '자주 사용되는 레이아웃 패턴 및 페이지 템플릿을 제공합니다.', status: 'Coming Soon' },
-              ].map(s => {
-                const sc = s.status === 'Live'
-                  ? { color: 'var(--color-function-positive-default)', bg: 'var(--color-function-positive-subtle)' }
-                  : { color: 'var(--color-neutral-foreground-subtle-3)', bg: 'var(--color-neutral-background-separated-1)' };
-                return (
-                  <tr key={s.title} style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>
-                    <td style={{ padding: '12px 16px 12px 0', fontWeight: 700, color: 'var(--color-neutral-foreground-default)', whiteSpace: 'nowrap', verticalAlign: 'top' }}>{s.title}</td>
-                    <td style={{ padding: '12px 16px 12px 0', color: 'var(--color-neutral-foreground-subtle-1)', lineHeight: 1.6, verticalAlign: 'top' }}>{s.desc}</td>
-                    <td style={{ padding: '12px 0', verticalAlign: 'top' }}>
-                      <span style={{ display: 'inline-block', padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 700, background: sc.bg, color: sc.color }}>{s.status}</span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* ── Components ── */}
-      <div style={{ marginBottom: '48px' }}>
-        <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: 'var(--color-neutral-foreground-subtle-3)', margin: '0 0 16px' }}>Components</p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          {[
-            { name: 'Badge', status: 'Live' }, { name: 'Button', status: 'Live' },
-            { name: 'Chip', status: 'Live' },  { name: 'Divider', status: 'Live' },
-            { name: 'Image', status: 'Live' }, { name: 'Profile', status: 'Live' },
-            { name: 'Input', status: 'Coming Soon' }, { name: 'Select', status: 'Coming Soon' },
-            { name: 'Modal', status: 'Coming Soon' }, { name: 'Toast', status: 'Coming Soon' },
-            { name: 'Tab', status: 'Coming Soon' },   { name: 'Toggle', status: 'Coming Soon' },
-          ].map(c => {
-            const sc = c.status === 'Live'
-              ? { color: 'var(--color-function-positive-default)', bg: 'var(--color-function-positive-subtle)' }
-              : { color: 'var(--color-neutral-foreground-subtle-3)', bg: 'var(--color-neutral-background-separated-1)' };
-            return (
-              <div key={c.name} style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                padding: '8px 14px', borderRadius: 8,
-                border: '1px solid var(--color-neutral-stroke-divider)',
-                background: 'var(--color-neutral-background-default)',
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {usageItems.map((section) => (
+            <div key={section.name} style={{
+              border: '1px solid var(--color-neutral-stroke-divider)',
+              borderRadius: 10, overflow: 'hidden',
+              background: 'var(--color-neutral-background-default)',
+            }}>
+              <div style={{
+                padding: '14px 20px',
+                background: 'var(--color-neutral-background-raised-1)',
+                borderBottom: '1px solid var(--color-neutral-stroke-divider)',
               }}>
-                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-neutral-foreground-default)' }}>{c.name}</span>
-                <span style={{ padding: '1px 6px', borderRadius: 3, fontSize: 10, fontWeight: 700, background: sc.bg, color: sc.color }}>{c.status}</span>
+                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: 'var(--color-neutral-foreground-default)' }}>{section.name}</h3>
               </div>
-            );
-          })}
+              <div style={{ padding: '16px 20px' }}>
+                <ul style={{ margin: 0, paddingLeft: 18, listStyle: 'disc' }}>
+                  {section.items.map((d, i) => (
+                    <li key={i} style={{ fontSize: 13, color: 'var(--color-neutral-foreground-subtle-1)', lineHeight: 1.7, marginBottom: i < section.items.length - 1 ? 4 : 0 }}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 

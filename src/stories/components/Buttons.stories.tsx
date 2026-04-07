@@ -112,7 +112,7 @@ const meta: Meta<typeof Button> = {
 | \`label\` | default | 버튼의 텍스트 레이블 |
 | \`iconHead\` | false / true | 레이블 왼쪽 아이콘 — 레이블을 보조하는 시각정보 |
 | \`iconTail\` | false / true | 레이블 오른쪽 아이콘 — 수행 이후의 동작을 예상하도록 돕는 보조장치 |
-| \`count\` | false / true | 액션이 발생할 때마다 카운트, 전환되는 리스트 위치를 안내 |
+| \`count\` | false / true | 액션이 발생할 때마다 카운트, 전환되는 리스트 위치를 안내 (md · lg · xl만 지원) |
 | \`thumbnail\` | false / true | 버튼 내부의 이미지 썸네일 |
 
 \`\`\`tsx
@@ -269,10 +269,11 @@ export const Sizes: Story = {
             <tbody>
               {[
                 ['Height', '28', '36', '40', '44', '48', '52'],
-                ['Icon size', '최대 16', '최대 16', '최대 20', '최대 20', '최대 20', '최대 20'],
+                ['Icon size', '10', '14', '16', '16', '16', '16'],
                 ['Text size', '12', '14', '15', '15', '16', '16'],
+                ['Font weight', '400', '400', '400', '600', '600', '600'],
                 ['Min padding', '10', '12', '12', '16', '16', '20'],
-                ['Radius', '최소 6', '최소 6', '최소 8', '최소 8', '최소 8', '최소 8'],
+                ['Radius', '999', '999', '999', '999', '999', '999'],
               ].map(row => (
                 <tr key={row[0]} style={{ borderBottom: '1px solid var(--color-neutral-stroke-divider)' }}>
                   {row.map((cell, i) => (
@@ -368,7 +369,7 @@ export const Contents: Story = {
           <Button variant="plain" iconTail={<IcArrow />}>자세히 보기</Button>
         </Row>
       </Block>
-      <Block label="count" desc="액션이 발생할 때마다 카운트. 전환되는 리스트 위치를 안내합니다.">
+      <Block label="count" desc="액션이 발생할 때마다 카운트. 전환되는 리스트 위치를 안내합니다. (md · lg · xl만 지원)">
         <Row>
           <Button variant="solid" count={3}>알림</Button>
           <Button variant="tonal" count={12}>댓글</Button>

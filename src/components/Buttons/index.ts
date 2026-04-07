@@ -6,7 +6,7 @@ export { ButtonIcon } from './Icon';
 export type { ButtonIconProps, ButtonIconVariant, ButtonIconSize, ButtonIconColor, ButtonIconShape } from './Icon';
 
 export { ButtonSegment } from './Segment';
-export type { ButtonSegmentProps, ButtonSegmentOption, ButtonSegmentShape, ButtonSegmentType, ButtonSegmentSize } from './Segment';
+export type { ButtonSegmentProps, ButtonSegmentOption, ButtonSegmentShape, ButtonSegmentType } from './Segment';
 
 export { ButtonGroup } from './Group';
 export type { ButtonGroupProps, ButtonGroupShape, ButtonGroupSize } from './Group';
