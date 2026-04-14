@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ControlsStories from './index.stories';
+
+<Meta of={ControlsStories} />
+
+# Controls
+
+스위치 컨트롤 컴포넌트. Toggle과 Tab 두 가지 서브 컴포넌트로 구성됩니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ControlsStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ControlsStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

@@ -29,7 +29,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ImageRect> = {
   title: 'Components/Images/Rectangle',
   component: ImageRect,
-  tags: ['autodocs'],
+  // docs page는 Rectangle.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -184,6 +184,7 @@ export const Playground: Story = {
 
 // ── Type ───────────────────────────────────────────────────────────────────
 export const Types: Story = {
+  tags: ['!autodocs'],
   name: 'Type',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -207,6 +208,7 @@ export const Types: Story = {
 
 // ── Ratio ──────────────────────────────────────────────────────────────────
 export const Ratios: Story = {
+  tags: ['!autodocs'],
   name: 'Ratio',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -262,6 +264,7 @@ export const Ratios: Story = {
 
 // ── Opacity ────────────────────────────────────────────────────────────────
 export const Opacities: Story = {
+  tags: ['!autodocs'],
   name: 'Opacity',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -281,6 +284,7 @@ export const Opacities: Story = {
 
 // ── Shadow ─────────────────────────────────────────────────────────────────
 export const Shadows: Story = {
+  tags: ['!autodocs'],
   name: 'Shadow',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -300,6 +304,7 @@ export const Shadows: Story = {
 
 // ── State ──────────────────────────────────────────────────────────────────
 export const States: Story = {
+  tags: ['!autodocs'],
   name: 'State',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -319,6 +324,7 @@ export const States: Story = {
 
 // ── Matrix ─────────────────────────────────────────────────────────────────
 export const Matrix: Story = {
+  tags: ['!autodocs'],
   name: 'Matrix',
   render: () => {
     const ratios: ImageRectRatio[] = ['1:1', '16:9', '3:2', '3:4', '3:4.5', '3:5'];

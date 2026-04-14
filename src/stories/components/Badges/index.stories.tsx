@@ -29,7 +29,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof BadgeOverlay> = {
   title: 'Assets/Badges',
   component: BadgeOverlay,
-  tags: ['autodocs'],
+  // docs page는 index.mdx에서 관리
   parameters: {
     layout: 'padded',
     docs: {

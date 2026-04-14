@@ -60,7 +60,7 @@ const IMG = 'https://images.unsplash.com/photo-1596367407372-96cb88503db6?q=80&w
 const meta: Meta<typeof Thumbnail> = {
   title: 'Components/Thumbnail',
   component: Thumbnail,
-  tags: ['autodocs'],
+  // docs page는 Thumbnail.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

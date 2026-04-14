@@ -1,24 +1,71 @@
 import React from 'react';
 import type { Preview, Decorator } from '@storybook/react';
 import '../src/index.css';
+import { MdsDocsPage } from './MdsDocsPage';
 
 const DOCS_TYPOGRAPHY_CSS = `
-  .sbdocs-title {
+  .sbdocs, .sbdocs * {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+  .sbdocs h1 {
     font-size: 36px !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.3px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    color: #111122 !important;
+    margin-bottom: 6px !important;
+  }
+  .sbdocs-title {
+    font-size: 36px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px !important;
+    color: #111122 !important;
   }
   .sbdocs h2,
   .sbdocs h3,
   .sbdocs h4 {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-weight: 700 !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    color: #111122 !important;
   }
-  .sbdocs-description,
-  .sbdocs .sbdocs-p {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  .sbdocs h2 {
+    font-size: 20px !important;
+    margin: 24px 0 12px !important;
   }
+  .sbdocs p {
+    font-size: 13px !important;
+    color: #55557A !important;
+    line-height: 1.7 !important;
+  }
+  .sbdocs .sb-unstyled {
+    margin-top: 8px !important;
+  }
+  .sbdocs .sb-anchor > h2#stories,
+  .sbdocs-stories-title,
+  h2#stories,
+  [id="stories"],
+  .sbdocs h2[id="stories"],
+  .sbdocs div > h2:has(+ .sb-unstyled) {
+    display: none !important;
+  }
+  /* Properties 헤더 테두리 */
+  .docblock-argstable {
+    border-radius: 4px !important;
+    overflow: hidden !important;
+  }
+  .docblock-argstable thead tr {
+    border-top: 1px solid #E4E4EE !important;
+    border-left: 1px solid #E4E4EE !important;
+    border-right: 1px solid #E4E4EE !important;
+    border-radius: 8px 8px 0 0 !important;
+  }
+  /* STORIES 대문자 레이블 */
+  h3[class], h2[class] {
+    text-transform: none !important;
+    letter-spacing: normal !important;
+  }
+
+
 `;
 
 const CANVAS_DARK_CSS = `
@@ -34,7 +81,7 @@ const CANVAS_DARK_CSS = `
 
 const CANVAS_LIGHT_CSS = `
   body, .sb-show-main, .sb-main-padded, .sb-main-centered, .sb-main-fullscreen,
-  #storybook-root {
+  #storybook-root, .docs-story, .docs-story > div {
     background-color: #F5F5F8 !important;
   }
 `;
@@ -89,23 +136,23 @@ const preview: Preview = {
         order: [
           'Home',
           'Foundation',
-          'Assets', ['Icon', 'container.icon', 'Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'], '*'],
+          'Assets', ['Icon', 'container.icon', 'Badges', ['Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', '*', 'Overview', 'Docs'], '*'],
           'Components',
           [
-            'Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'],
+            'Badges', ['Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', '*', 'Overview', 'Docs'],
+            'Buttons', ['Basic', 'Icon', 'Segment', 'Group', '*', 'Overview', 'Docs'],
             'Chip',
+            'Controls', ['Switch', 'Search', '*', 'Docs'],
             'Dialogs',
             'Divider',
-            'Header', ['Docs', 'Title', 'Block', 'Components', 'Usage', 'Matrix', '*'],
-            'Images', ['Docs', 'Circle', 'Opacity', 'Place', 'Rectangle', 'Shadow', 'Thumbnail', '*'],
+            'Header', ['Title', 'Block', 'Components', 'Usage', 'Matrix', '*', 'Docs'],
+            'Images', ['Circle', 'Opacity', 'Place', 'Rectangle', 'Shadow', 'Thumbnail', '*', 'Overview', 'Docs'],
             'Pagination',
             'Popover @의선',
             'Profile',
-            'Reaction', ['Docs', 'Horizontal', 'Vertical', '*'],
-            'Search',
+            'Reaction', ['Horizontal', 'Vertical', '*', 'Docs'],
             'Sheets @ 수정',
             'Snackbar @수정',
-            'Switch',
             'Tabs',
             'Thumbnail',
             '*',
@@ -114,6 +161,9 @@ const preview: Preview = {
           '*',
         ],
       },
+    },
+    docs: {
+      page: MdsDocsPage,
     },
     controls: {
       matchers: {

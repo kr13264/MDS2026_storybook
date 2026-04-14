@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as OpacityStories from './Opacity.stories';
+
+<Meta of={OpacityStories} />
+
+# Opacity
+
+이미지 위에 검정 딤(dim) 레이어를 적용하는 Opacity 컴포넌트. 이미지 위 텍스트 가독성 확보에 활용합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={OpacityStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={OpacityStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

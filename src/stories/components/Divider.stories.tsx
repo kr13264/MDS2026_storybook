@@ -18,7 +18,7 @@ const Block = ({ label, desc, children }: { label: string; desc?: string; childr
 const meta: Meta<typeof Divider> = {
   title: 'Components/Divider',
   component: Divider,
-  tags: ['autodocs'],
+  // docs page는 Divider.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

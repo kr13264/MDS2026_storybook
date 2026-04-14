@@ -1,0 +1,49 @@
+{
+  "component": "Selection",
+  "category": "Selection",
+  "description": "MDS Selection component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "선택 유형",
+      "values": [
+        "check",
+        "add",
+        "radio"
+      ],
+      "default": "check"
+    },
+    "shape": {
+      "type": "enum",
+      "required": false,
+      "description": "형태 (radio는 circle만 지원)",
+      "values": [
+        "circle",
+        "square"
+      ]
+    },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "선택 상태",
+      "default": false
+    },
+    "enabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "활성 상태 (false = disabled)",
+      "default": true
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "비활성",
+      "default": false
+    }
+  }
+}

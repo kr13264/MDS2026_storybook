@@ -19,7 +19,7 @@ const Block = ({ label, desc, children }: { label: string; desc?: string; childr
 const meta: Meta<typeof Icon> = {
   title: 'Assets/Icon/container.icon',
   component: Icon,
-  tags: ['autodocs'],
+  // docs page는 Icon.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

@@ -1,0 +1,51 @@
+{
+  "component": "HeaderTitle",
+  "category": "Header",
+  "description": "MDS HeaderTitle component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "타이틀 텍스트",
+      "default": "타이틀"
+    },
+    "layout": {
+      "type": "enum",
+      "required": false,
+      "description": "레이아웃 (좌측 정렬 / 중앙 정렬)",
+      "values": [
+        "Left",
+        "Center"
+      ],
+      "default": "Left"
+    },
+    "showHeadIcon": {
+      "type": "boolean",
+      "required": false,
+      "description": "Leading 아이콘 표시 여부",
+      "default": true
+    },
+    "showTailIcon": {
+      "type": "boolean",
+      "required": false,
+      "description": "Trailing 아이콘 표시 여부",
+      "default": true
+    },
+    "showTitlePrefix": {
+      "type": "boolean",
+      "required": false,
+      "description": "타이틀 앞 아이콘 표시 여부",
+      "default": false
+    },
+    "showTitleSuffix": {
+      "type": "boolean",
+      "required": false,
+      "description": "타이틀 뒤 아이콘 표시 여부",
+      "default": false
+    }
+  }
+}

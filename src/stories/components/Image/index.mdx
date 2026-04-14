@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ImagesStories from './index.stories';
+
+<Meta of={ImagesStories} />
+
+# Images
+
+비율, 딤, 그림자를 조합하는 이미지 래퍼 컴포넌트 패밀리입니다.
+Rectangle, Circle 형태와 Place, Opacity, Shadow 레이어 컴포넌트로 구성됩니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ImagesStories.Overview} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ImagesStories.Overview} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

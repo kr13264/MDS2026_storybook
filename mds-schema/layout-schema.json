@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "description": "MDS Layout Template Schema — 웹 빌더에서 생성되는 레이아웃 JSON 포맷",
+  "layoutNodeTypes": {
+    "Layout": {
+      "description": "레이아웃 컨테이너",
+      "props": {
+        "direction": {
+          "type": "enum",
+          "values": [
+            "vertical",
+            "horizontal"
+          ],
+          "default": "vertical"
+        },
+        "gap": {
+          "type": "enum",
+          "values": [
+            "none",
+            "4xs",
+            "3xs",
+            "2xs",
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+            "5xl"
+          ],
+          "default": "m"
+        },
+        "padding": {
+          "type": "enum",
+          "values": [
+            "none",
+            "4xs",
+            "3xs",
+            "2xs",
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+            "5xl"
+          ],
+          "default": "none"
+        },
+        "align": {
+          "type": "enum",
+          "values": [
+            "start",
+            "center",
+            "end",
+            "stretch"
+          ],
+          "default": "stretch"
+        },
+        "justify": {
+          "type": "enum",
+          "values": [
+            "start",
+            "center",
+            "end",
+            "between",
+            "around"
+          ],
+          "default": "start"
+        },
+        "wrap": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "Grid": {
+      "description": "그리드 컨테이너",
+      "props": {
+        "columns": {
+          "type": "number",
+          "default": 2
+        },
+        "gap": {
+          "type": "enum",
+          "values": [
+            "none",
+            "4xs",
+            "3xs",
+            "2xs",
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+            "5xl"
+          ],
+          "default": "m"
+        }
+      }
+    },
+    "Spacer": {
+      "description": "간격 노드",
+      "props": {
+        "size": {
+          "type": "enum",
+          "values": [
+            "4xs",
+            "3xs",
+            "2xs",
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "2xl",
+            "3xl",
+            "4xl",
+            "5xl"
+          ],
+          "default": "m"
+        }
+      }
+    }
+  },
+  "templateFormat": {
+    "name": {
+      "type": "string",
+      "description": "템플릿 이름"
+    },
+    "platform": {
+      "type": "array",
+      "items": "web | app",
+      "description": "지원 플랫폼"
+    },
+    "root": {
+      "type": "LayoutNode | ComponentNode",
+      "description": "루트 노드"
+    }
+  }
+}

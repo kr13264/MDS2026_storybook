@@ -1,0 +1,33 @@
+{
+  "component": "HeaderBlock",
+  "category": "Header",
+  "description": "MDS HeaderBlock component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "블록 타입",
+      "values": [
+        "SheetsTitle",
+        "BlockTitle"
+      ],
+      "default": "SheetsTitle"
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "타이틀 텍스트",
+      "default": "타이틀"
+    },
+    "showTailIcon": {
+      "type": "boolean",
+      "required": false,
+      "description": "Trailing 아이콘 표시 여부",
+      "default": true
+    }
+  }
+}

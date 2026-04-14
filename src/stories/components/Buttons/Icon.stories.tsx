@@ -50,7 +50,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ButtonIcon> = {
   title: 'Components/Buttons/Icon',
   component: ButtonIcon,
-  tags: ['autodocs'],
+  // docs page는 Icon.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

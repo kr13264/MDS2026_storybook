@@ -1,0 +1,23 @@
+{
+  "component": "BadgeVerified",
+  "category": "Badges",
+  "description": "MDS BadgeVerified component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "인증 뱃지 타입",
+      "values": [
+        "official",
+        "local",
+        "verifiedSm",
+        "verifiedLg"
+      ],
+      "default": "official"
+    }
+  }
+}

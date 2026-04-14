@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as GroupStories from './Group.stories';
+
+<Meta of={GroupStories} />
+
+# Group
+
+관련된 복수의 액션을 함께 제시하는 버튼 그룹입니다.
+취소(outlined/neutral)와 확인(solid/primary) 패턴으로 구성됩니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={GroupStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={GroupStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

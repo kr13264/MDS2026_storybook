@@ -29,7 +29,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ImageOpacity> = {
   title: 'Components/Images/Opacity',
   component: ImageOpacity,
-  tags: ['autodocs'],
+  // docs page는 Opacity.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -112,6 +112,7 @@ export const Playground: Story = {
 
 // ── Levels ─────────────────────────────────────────────────────────────────
 export const Levels: Story = {
+  tags: ['!autodocs'],
   name: 'Opacity',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>

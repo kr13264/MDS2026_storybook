@@ -1,0 +1,61 @@
+{
+  "component": "PopoverInfo",
+  "category": "Popover",
+  "description": "MDS PopoverInfo component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "타입",
+      "values": [
+        "default",
+        "titled"
+      ],
+      "default": "default"
+    },
+    "line": {
+      "type": "enum",
+      "required": false,
+      "description": "줄 수",
+      "values": [
+        "single",
+        "multi"
+      ],
+      "default": "single"
+    },
+    "button": {
+      "type": "boolean",
+      "required": false,
+      "description": "버튼 표시 여부",
+      "default": false
+    },
+    "title": {
+      "type": "string",
+      "required": false,
+      "description": "제목 (titled 타입)",
+      "default": "Title"
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "본문 텍스트",
+      "default": "AI가 내 활동 기반으로 장소를 추천합니다."
+    },
+    "buttonLabel": {
+      "type": "string",
+      "required": false,
+      "description": "버튼 레이블",
+      "default": "레이블 Label"
+    },
+    "linkText": {
+      "type": "string",
+      "required": false,
+      "description": "링크 텍스트 (single + button)",
+      "default": "메뉴명"
+    }
+  }
+}

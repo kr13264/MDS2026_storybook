@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ThumbnailStories from './Thumbnail.stories';
+
+<Meta of={ThumbnailStories} />
+
+# Thumbnail
+
+콘텐츠 목록에서 사용하는 썸네일 컴포넌트입니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ThumbnailStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ThumbnailStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as VerticalStories from './Vertical.stories';
+
+<Meta of={VerticalStories} />
+
+# Vertical
+
+수직 리액션 버튼 컴포넌트입니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={VerticalStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={VerticalStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

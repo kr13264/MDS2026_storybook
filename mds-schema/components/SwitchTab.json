@@ -1,0 +1,37 @@
+{
+  "component": "SwitchTab",
+  "category": "Switch",
+  "description": "MDS SwitchTab component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "style": {
+      "type": "enum",
+      "required": false,
+      "description": "스타일",
+      "values": [
+        "square",
+        "round"
+      ],
+      "default": "square"
+    },
+    "options": {
+      "type": "[SwitchTabOption, SwitchTabOption]",
+      "required": false,
+      "description": "옵션 (2개)"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "선택된 값"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "비활성",
+      "default": false
+    }
+  }
+}

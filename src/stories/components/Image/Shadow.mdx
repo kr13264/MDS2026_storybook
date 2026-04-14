@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ShadowStories from './Shadow.stories';
+
+<Meta of={ShadowStories} />
+
+# Shadow
+
+이미지 위에 방향성 그라디언트 오버레이를 적용하는 Shadow 컴포넌트. 이미지 엣지 처리 및 UI 요소와의 경계 구분에 활용합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ShadowStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ShadowStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

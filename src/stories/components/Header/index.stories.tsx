@@ -22,7 +22,7 @@ const Row = ({ children, gap = 24 }: { children: React.ReactNode; gap?: number }
 const meta: Meta<typeof Handle> = {
   title: 'Components/Header',
   component: Handle,
-  tags: ['autodocs'],
+  // docs page는 index.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

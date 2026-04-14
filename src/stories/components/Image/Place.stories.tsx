@@ -29,7 +29,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ImagePlace> = {
   title: 'Components/Images/Place',
   component: ImagePlace,
-  tags: ['autodocs'],
+  // docs page는 Place.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -104,6 +104,7 @@ export const Playground: Story = {
 
 // ── Types ──────────────────────────────────────────────────────────────────
 export const Types: Story = {
+  tags: ['!autodocs'],
   name: 'Type',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -127,6 +128,7 @@ export const Types: Story = {
 
 // ── Sizes ──────────────────────────────────────────────────────────────────
 export const Sizes: Story = {
+  tags: ['!autodocs'],
   name: 'Size',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>

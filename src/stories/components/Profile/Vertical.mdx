@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as VerticalStories from './Vertical.stories';
+
+<Meta of={VerticalStories} />
+
+# Vertical
+
+채널을 강조할 때 사용하는 아바타 + 텍스트 형식의 프로필 컴포넌트입니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={VerticalStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={VerticalStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

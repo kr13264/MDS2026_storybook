@@ -22,7 +22,7 @@ const Block = ({ label, desc, children }: { label: string; desc?: string; childr
 const meta: Meta<typeof ReactionVertical> = {
   title: 'Components/Reaction/Vertical',
   component: ReactionVertical,
-  tags: ['autodocs'],
+  // docs page는 Vertical.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

@@ -1,0 +1,40 @@
+{
+  "component": "SwitchToggle",
+  "category": "Switch",
+  "description": "MDS SwitchToggle component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "토글 크기",
+      "values": [
+        "lg",
+        "md",
+        "sm"
+      ],
+      "default": "lg"
+    },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "선택 상태",
+      "default": false
+    },
+    "label": {
+      "type": "boolean",
+      "required": false,
+      "description": "ON/OFF 라벨 표시 (lg 사이즈만 지원)",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "비활성",
+      "default": false
+    }
+  }
+}

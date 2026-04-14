@@ -44,9 +44,29 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof Chip> = {
   title: 'Components/Chip',
   component: Chip,
-  tags: ['autodocs'],
+  // docs page는 Chip.mdx에서 관리
   parameters: {
     layout: 'centered',
+    sourceCode: {
+      fe: `import { Chip } from '@/components/Chip';
+
+<Chip type="label" size="md" label="레이블" />`,
+      ios: `ChipBasic(
+    type: .label,
+    state: .enabled,
+    size: .md,
+    label: "레이블"
+)`,
+      aos: `@Composable
+fun Preview() {
+    ChipBasic(
+        Type = "Label",
+        State = "Enabled",
+        Size = "md",
+        Label = "레이블"
+    )
+}`,
+    },
     docs: {
       description: {
         component: `

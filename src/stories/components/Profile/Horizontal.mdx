@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as HorizontalStories from './Horizontal.stories';
+
+<Meta of={HorizontalStories} />
+
+# Horizontal
+
+아바타와 텍스트를 가로로 배치하는 프로필 컴포넌트입니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={HorizontalStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={HorizontalStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

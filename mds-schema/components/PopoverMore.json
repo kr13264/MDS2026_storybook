@@ -1,0 +1,16 @@
+{
+  "component": "PopoverMore",
+  "category": "Popover",
+  "description": "MDS PopoverMore component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "items": {
+      "type": "MoreItem[]",
+      "required": false,
+      "description": "메뉴 아이템 목록"
+    }
+  }
+}

@@ -61,7 +61,7 @@ const figmaNode = (nodeId: string) => ({
 const meta: Meta<typeof Button> = {
   title: 'Components/Buttons/Basic',
   component: Button,
-  tags: ['autodocs'],
+  // docs page는 Buttons.mdx에서 관리
   parameters: {
     layout: 'centered',
     design: {
@@ -207,6 +207,7 @@ export const Playground: Story = {
 // ── Style (Variant) ────────────────────────────────────────────────────────
 export const Styles: Story = {
   name: 'Style',
+  tags: ['!autodocs'],
   parameters: {
     ...figmaNode('0-2'), // TODO: Style 섹션 프레임 node-id로 교체
   },
@@ -251,6 +252,7 @@ export const Styles: Story = {
 // ── Size ───────────────────────────────────────────────────────────────────
 export const Sizes: Story = {
   name: 'Size',
+  tags: ['!autodocs'],
   parameters: {
     ...figmaNode('0-3'), // TODO: Size 섹션 프레임 node-id로 교체
   },
@@ -314,6 +316,7 @@ export const Sizes: Story = {
 // ── State ──────────────────────────────────────────────────────────────────
 export const States: Story = {
   name: 'State',
+  tags: ['!autodocs'],
   parameters: {
     ...figmaNode('0-4'), // TODO: State 섹션 프레임 node-id로 교체
   },
@@ -349,6 +352,7 @@ export const States: Story = {
 // ── Contents (Slots) ───────────────────────────────────────────────────────
 export const Contents: Story = {
   name: 'Contents',
+  tags: ['!autodocs'],
   parameters: {
     ...figmaNode('0-5'), // TODO: Contents 섹션 프레임 node-id로 교체
   },
@@ -394,6 +398,7 @@ export const Contents: Story = {
 // ── FAB ────────────────────────────────────────────────────────────────────
 export const FAB: Story = {
   name: 'FAB',
+  tags: ['!autodocs'],
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <Block label="fab=false" desc="일반 버튼 형태로 사용합니다.">
@@ -414,6 +419,7 @@ export const FAB: Story = {
 
 // ── Full Width ─────────────────────────────────────────────────────────────
 export const FullWidth: Story = {
+  tags: ['!autodocs'],
   render: () => (
     <div style={{ width: 360, display: 'flex', flexDirection: 'column', gap: 10 }}>
       <Block label="Full Width" desc="페이지 하단·폼 제출·바텀시트 등에서 사용합니다.">
@@ -430,6 +436,7 @@ export const FullWidth: Story = {
 // ── Matrix (Variant × Size) ────────────────────────────────────────────────
 export const Matrix: Story = {
   name: 'Matrix',
+  tags: ['!autodocs'],
   render: () => {
     const variants: ButtonVariant[] = ['solid', 'tonal', 'outlined', 'plain'];
     const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];

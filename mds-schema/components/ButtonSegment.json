@@ -1,0 +1,47 @@
+{
+  "component": "ButtonSegment",
+  "category": "Buttons",
+  "description": "MDS ButtonSegment component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "options": {
+      "type": "ButtonSegmentOption[]",
+      "required": true,
+      "description": "선택지 목록 (2~4개)"
+    },
+    "value": {
+      "type": "string",
+      "required": true,
+      "description": "현재 선택 값"
+    },
+    "shape": {
+      "type": "enum",
+      "required": false,
+      "description": "버튼 형태 — square(사각) · round(원형)",
+      "values": [
+        "square",
+        "round"
+      ],
+      "default": "square"
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "너비 유형 - `half` : 텍스트 폭 기반, 항목 사이 구분선 - `full` : 컨테이너 너비를 항목 수로 균등 분할",
+      "values": [
+        "half",
+        "full"
+      ],
+      "default": "half"
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "전체 비활성",
+      "default": false
+    }
+  }
+}

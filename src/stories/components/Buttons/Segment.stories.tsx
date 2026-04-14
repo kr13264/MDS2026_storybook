@@ -34,7 +34,7 @@ const SegmentDemo = (props: Omit<React.ComponentProps<typeof ButtonSegment>, 'va
 const meta: Meta<typeof ButtonSegment> = {
   title: 'Components/Buttons/Segment',
   component: ButtonSegment,
-  tags: ['autodocs'],
+  // docs page는 Segment.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

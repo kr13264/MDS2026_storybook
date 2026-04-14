@@ -28,7 +28,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ImageRect> = {
   title: 'Components/Images',
   component: ImageRect,
-  tags: ['autodocs'],
+  // docs page는 index.mdx에서 관리
   parameters: {
     layout: 'padded',
     docs: {

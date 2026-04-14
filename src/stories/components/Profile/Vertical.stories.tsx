@@ -26,7 +26,7 @@ const AVATAR = 'https://i.pravatar.cc/150?img=3';
 const meta: Meta<typeof ProfileVertical> = {
   title: 'Components/Profile/Vertical',
   component: ProfileVertical,
-  tags: ['autodocs'],
+  // docs page는 Vertical.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

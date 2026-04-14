@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as BadgesStories from './index.stories';
+
+<Meta of={BadgesStories} />
+
+# Badges
+
+상태, 카운트, 레이블, 인증 등을 표시하는 뱃지 컴포넌트 패밀리입니다.
+Overlay, Ad, Count, Tooltip, Verified 5종의 서브 컴포넌트로 구성됩니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={BadgesStories.Overview} sourceState="hidden" />
+
+## Properties
+
+<Controls of={BadgesStories.Overview} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

@@ -46,7 +46,7 @@ const Block = ({ label, desc, children }: { label: string; desc?: string; childr
 const meta: Meta<typeof ButtonBasic> = {
   title: 'Components/Buttons',
   component: ButtonBasic,
-  tags: ['autodocs'],
+  // docs page는 index.mdx에서 관리
   parameters: {
     layout: 'padded',
     docs: {

@@ -1,0 +1,23 @@
+{
+  "component": "Handle",
+  "category": "Header",
+  "description": "MDS Handle component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "barWidth": {
+      "type": "number",
+      "required": false,
+      "description": "핸들 바 너비 (px)",
+      "default": 36
+    },
+    "barHeight": {
+      "type": "number",
+      "required": false,
+      "description": "핸들 바 높이 (px)",
+      "default": 5
+    }
+  }
+}

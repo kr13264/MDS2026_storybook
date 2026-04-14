@@ -26,7 +26,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof BadgeCount> = {
   title: 'Assets/Badges/Count',
   component: BadgeCount,
-  tags: ['autodocs'],
+  // docs page는 Count.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -76,6 +76,7 @@ export const Playground: Story = {
 
 // ── Size ─────────────────────────────────────────────────────────────────────
 export const Sizes: Story = {
+  tags: ['!autodocs'],
   name: 'Size',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -122,6 +123,7 @@ export const Sizes: Story = {
 
 // ── Contents ─────────────────────────────────────────────────────────────────
 export const Contents: Story = {
+  tags: ['!autodocs'],
   name: 'Contents',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -153,6 +155,7 @@ export const Contents: Story = {
 
 // ── Matrix ───────────────────────────────────────────────────────────────────
 export const Matrix: Story = {
+  tags: ['!autodocs'],
   name: 'Matrix',
   render: () => {
     const types: BadgeCountType[] = ['default', 'number', 'max', 'new'];

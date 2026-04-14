@@ -1,0 +1,29 @@
+{
+  "component": "BadgeCount",
+  "category": "Badges",
+  "description": "MDS BadgeCount component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "뱃지 타입",
+      "values": [
+        "default",
+        "number",
+        "max",
+        "new"
+      ],
+      "default": "default"
+    },
+    "count": {
+      "type": "number",
+      "required": false,
+      "description": "숫자 (number, max 전용)",
+      "default": 2
+    }
+  }
+}

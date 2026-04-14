@@ -5,9 +5,9 @@ export interface HeaderBlockProps {
   type?: HeaderBlockType;
   /** 타이틀 텍스트 */
   title?: string;
-  /** Trailing 슬롯 표시 여부 */
-  trailingSlot?: boolean;
-  /** Trailing 슬롯 커스텀 콘텐츠 */
-  back?: React.ReactNode;
+  /** Trailing 아이콘 표시 여부 */
+  showTailIcon?: boolean;
+  /** Trailing 아이콘 슬롯 */
+  tailIcon?: React.ReactNode;
   className?: string;
 }

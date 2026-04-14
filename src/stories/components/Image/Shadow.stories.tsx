@@ -29,7 +29,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ImageShadow> = {
   title: 'Components/Images/Shadow',
   component: ImageShadow,
-  tags: ['autodocs'],
+  // docs page는 Shadow.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -119,6 +119,7 @@ export const Playground: Story = {
 
 // ── Directions ─────────────────────────────────────────────────────────────
 export const Directions: Story = {
+  tags: ['!autodocs'],
   name: 'Shadow',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>

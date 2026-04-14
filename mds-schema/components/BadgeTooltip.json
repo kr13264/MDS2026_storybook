@@ -1,0 +1,37 @@
+{
+  "component": "BadgeTooltip",
+  "category": "Badges",
+  "description": "MDS BadgeTooltip component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "사이즈",
+      "values": [
+        "sm",
+        "md"
+      ],
+      "default": "md"
+    },
+    "arrowLocation": {
+      "type": "enum",
+      "required": false,
+      "description": "화살표 위치",
+      "values": [
+        "left",
+        "right"
+      ],
+      "default": "left"
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "텍스트",
+      "default": "일이삼사오육칠팔"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "component": "Profile",
+  "category": "Profile",
+  "description": "MDS Profile component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "아바타 사이즈 (default=48px · small=36px)",
+      "values": [
+        "default",
+        "small"
+      ],
+      "default": "default"
+    },
+    "emphasis": {
+      "type": "boolean",
+      "required": false,
+      "description": "이름 강조 — fontWeight 400 → 600",
+      "default": false
+    },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "선택 상태 — 아바타에 파란 테두리(#3283fd) 표시",
+      "default": false
+    },
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "아바타 이미지 URL"
+    },
+    "alt": {
+      "type": "string",
+      "required": false,
+      "description": "아바타 이미지 alt",
+      "default": ""
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "프로필 이름",
+      "default": "프로필명"
+    },
+    "label": {
+      "type": "boolean",
+      "required": false,
+      "description": "레이블 표시 여부",
+      "default": true
+    },
+    "info": {
+      "type": "string",
+      "required": false,
+      "description": "서브 텍스트 (시간, 채널명 등)"
+    }
+  }
+}

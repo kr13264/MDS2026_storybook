@@ -28,7 +28,7 @@ const AVATAR = 'https://i.pravatar.cc/150?img=3';
 const meta: Meta<typeof ProfileHorizontal> = {
   title: 'Components/Profile/Horizontal',
   component: ProfileHorizontal,
-  tags: ['autodocs'],
+  // docs page는 Horizontal.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

@@ -1,5 +1,4 @@
 import type { HeaderBlockProps } from './Block.types';
-import { Handle } from '../Handle';
 
 /** 닫기 아이콘 (×) */
 const IcClose = () => (
@@ -17,8 +16,8 @@ const IcClose = () => (
 export const HeaderBlock = ({
   type = 'SheetsTitle',
   title = '타이틀',
-  trailingSlot = true,
-  back,
+  showTailIcon = true,
+  tailIcon,
   className = '',
 }: HeaderBlockProps) => {
   const isSheetsTitle = type === 'SheetsTitle';
@@ -110,7 +109,7 @@ export const HeaderBlock = ({
         </div>
 
         {/* Trailing */}
-        {trailingSlot && (
+        {showTailIcon && (
           <div
             style={{
               display: 'flex',
@@ -122,7 +121,7 @@ export const HeaderBlock = ({
               color: 'var(--color-neutral-foreground-default, #000)',
             }}
           >
-            {back ?? <IcClose />}
+            {tailIcon ?? <IcClose />}
           </div>
         )}
       </div>

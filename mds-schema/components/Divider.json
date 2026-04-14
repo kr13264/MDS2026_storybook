@@ -1,0 +1,27 @@
+{
+  "component": "Divider",
+  "category": "Divider",
+  "description": "MDS Divider component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "orientation": {
+      "type": "enum",
+      "required": false,
+      "description": "방향",
+      "values": [
+        "horizontal",
+        "vertical"
+      ],
+      "default": "horizontal"
+    },
+    "length": {
+      "type": "number | string",
+      "required": false,
+      "description": "길이 (horizontal: width, vertical: height)",
+      "default": "100%"
+    }
+  }
+}

@@ -29,7 +29,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ImageCircle> = {
   title: 'Components/Images/Circle',
   component: ImageCircle,
-  tags: ['autodocs'],
+  // docs page는 Circle.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -137,6 +137,7 @@ const SIZE_META: { size: ImageCircleSize; px: number; usage: string }[] = [
 ];
 
 export const Sizes: Story = {
+  tags: ['!autodocs'],
   name: 'Size',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -177,6 +178,7 @@ export const Sizes: Story = {
 
 // ── Types ──────────────────────────────────────────────────────────────────
 export const Types: Story = {
+  tags: ['!autodocs'],
   name: 'Type',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -196,6 +198,7 @@ export const Types: Story = {
 
 // ── States ─────────────────────────────────────────────────────────────────
 export const States: Story = {
+  tags: ['!autodocs'],
   name: 'State',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -211,6 +214,7 @@ export const States: Story = {
 
 // ── Matrix ─────────────────────────────────────────────────────────────────
 export const Matrix: Story = {
+  tags: ['!autodocs'],
   name: 'Matrix',
   render: () => {
     const sizes: ImageCircleSize[] = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs'];

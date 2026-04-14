@@ -26,7 +26,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof BadgeAd> = {
   title: 'Assets/Badges/Ad',
   component: BadgeAd,
-  tags: ['autodocs'],
+  // docs page는 Ad.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -81,6 +81,7 @@ export const Playground: Story = {
 
 // ── Size ─────────────────────────────────────────────────────────────────────
 export const Sizes: Story = {
+  tags: ['!autodocs'],
   name: 'Size',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -118,6 +119,7 @@ export const Sizes: Story = {
 
 // ── Contents ─────────────────────────────────────────────────────────────────
 export const Contents: Story = {
+  tags: ['!autodocs'],
   name: 'Contents',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -171,6 +173,7 @@ export const Contents: Story = {
 
 // ── Matrix ───────────────────────────────────────────────────────────────────
 export const AllTypes: Story = {
+  tags: ['!autodocs'],
   name: 'Matrix',
   render: () => {
     const types: BadgeAdType[] = ['best', 'couponBig', 'official', 'couponSmall', 'purchase', 'rating', 'review', 'wish'];

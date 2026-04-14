@@ -1,0 +1,54 @@
+{
+  "component": "BadgeOverlay",
+  "category": "Badges",
+  "description": "MDS BadgeOverlay component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "뱃지 타입",
+      "values": [
+        "basic",
+        "live",
+        "liveLabel"
+      ],
+      "default": "basic"
+    },
+    "color": {
+      "type": "enum",
+      "required": false,
+      "description": "배경 색상 (basic 전용)",
+      "values": [
+        "alpha",
+        "solid"
+      ],
+      "default": "alpha"
+    },
+    "weight": {
+      "type": "enum",
+      "required": false,
+      "description": "폰트 굵기 (basic 전용)",
+      "values": [
+        "regular",
+        "bold"
+      ],
+      "default": "regular"
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "텍스트 (basic, liveLabel 전용)",
+      "default": "배지"
+    },
+    "viewCount": {
+      "type": "string",
+      "required": false,
+      "description": "시청자 수 (liveLabel 전용)",
+      "default": "1.6만 시청"
+    }
+  }
+}

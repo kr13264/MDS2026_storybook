@@ -87,7 +87,7 @@ const ProfileHorizontal = () => (
 const meta: Meta<typeof ImageThumbnail> = {
   title: 'Components/Images/Thumbnail',
   component: ImageThumbnail,
-  tags: ['autodocs'],
+  // docs page는 Thumbnail.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -211,6 +211,7 @@ export const Playground: Story = {
 
 // ── Type ───────────────────────────────────────────────────────────────────
 export const Types: Story = {
+  tags: ['!autodocs'],
   name: 'Type',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -257,6 +258,7 @@ export const Types: Story = {
 
 // ── Ratio ──────────────────────────────────────────────────────────────────
 export const Ratio: Story = {
+  tags: ['!autodocs'],
   name: 'Ratio',
   render: () => {
     const ratios: ImageThumbnailRatio[] = ['1:1', '3:2', '3:4', '3:4.5', '3:5', '16:9'];
@@ -286,6 +288,7 @@ export const Ratio: Story = {
 
 // ── Radius ─────────────────────────────────────────────────────────────────
 export const Radii: Story = {
+  tags: ['!autodocs'],
   name: 'Radius',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -312,6 +315,7 @@ export const Radii: Story = {
 
 // ── Matrix: Ratio × Type ──────────────────────────────────────────────────
 export const Matrix: Story = {
+  tags: ['!autodocs'],
   name: 'Matrix',
   render: () => {
     const types: ImageThumbnailType[] = ['image', 'media', 'gallery'];
@@ -364,6 +368,7 @@ export const Matrix: Story = {
 
 // ── Matrix: Radius × Type ─────────────────────────────────────────────────
 export const RadiusMatrix: Story = {
+  tags: ['!autodocs'],
   name: 'Radius Matrix',
   render: () => {
     const types: ImageThumbnailType[] = ['image', 'media', 'gallery'];

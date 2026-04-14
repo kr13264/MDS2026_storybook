@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as RectangleStories from './Rectangle.stories';
+
+<Meta of={RectangleStories} />
+
+# Rectangle
+
+비율(ratio), 딤 레이어(opacity), 그림자(shadow), object-fit 조합으로 구성된 Rectangle 이미지 래퍼 컴포넌트.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={RectangleStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={RectangleStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

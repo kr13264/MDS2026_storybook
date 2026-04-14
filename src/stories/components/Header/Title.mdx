@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as TitleStories from './Title.stories';
+
+<Meta of={TitleStories} />
+
+# Title
+
+네비게이션 헤더 타이틀 바 컴포넌트입니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={TitleStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={TitleStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

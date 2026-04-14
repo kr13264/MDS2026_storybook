@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as TabsStories from './index.stories';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+탭 전환 네비게이션 컴포넌트.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={TabsStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={TabsStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

@@ -1,0 +1,61 @@
+{
+  "component": "Dialog",
+  "category": "Dialogs",
+  "description": "MDS Dialog component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "타입: 상단 영역 구성 방식",
+      "values": [
+        "default",
+        "icon",
+        "avatar",
+        "custom"
+      ],
+      "default": "default"
+    },
+    "headline": {
+      "type": "string",
+      "required": false,
+      "description": "제목 텍스트"
+    },
+    "subText": {
+      "type": "string",
+      "required": false,
+      "description": "보조 텍스트"
+    },
+    "supportingText": {
+      "type": "string",
+      "required": false,
+      "description": "추가 설명 텍스트"
+    },
+    "avatarSrc": {
+      "type": "string",
+      "required": false,
+      "description": "아바타 이미지 URL (type=\"avatar\" 시 사용)"
+    },
+    "cancelLabel": {
+      "type": "string",
+      "required": false,
+      "description": "취소 버튼 레이블",
+      "default": "레이블 Label"
+    },
+    "confirmLabel": {
+      "type": "string",
+      "required": false,
+      "description": "확인 버튼 레이블",
+      "default": "레이블 Label"
+    },
+    "open": {
+      "type": "boolean",
+      "required": false,
+      "description": "열림 상태",
+      "default": true
+    }
+  }
+}

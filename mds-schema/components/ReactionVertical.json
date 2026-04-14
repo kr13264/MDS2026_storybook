@@ -1,0 +1,52 @@
+{
+  "component": "ReactionVertical",
+  "category": "Reaction",
+  "description": "MDS ReactionVertical component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "리액션 타입",
+      "values": [
+        "like",
+        "comment",
+        "share",
+        "bookmark"
+      ],
+      "default": "like"
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "사이즈",
+      "values": [
+        "large",
+        "medium",
+        "small"
+      ],
+      "default": "large"
+    },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "선택 상태",
+      "default": false
+    },
+    "showLabel": {
+      "type": "boolean",
+      "required": false,
+      "description": "레이블/숫자 표시 여부",
+      "default": true
+    },
+    "count": {
+      "type": "number",
+      "required": false,
+      "description": "카운트 값 (small 사이즈에서 숫자 표시)",
+      "default": 0
+    }
+  }
+}

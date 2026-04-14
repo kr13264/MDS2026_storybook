@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+MDS 아이콘 라이브러리입니다. 52개의 아이콘과 filled/outlined 스타일을 지원합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={IconStories.AllIcons} sourceState="hidden" />
+
+## Properties
+
+<Controls of={IconStories.AllIcons} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

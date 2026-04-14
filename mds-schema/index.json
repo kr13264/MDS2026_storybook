@@ -1,0 +1,190 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-04-11T09:16:54.626Z",
+  "totalComponents": 33,
+  "categories": [
+    "Badges",
+    "Buttons",
+    "Chip",
+    "Dialogs",
+    "Divider",
+    "Header",
+    "Icon",
+    "Images",
+    "Pagination",
+    "Popover",
+    "Profile",
+    "Reaction",
+    "Selection",
+    "Switch",
+    "Tabs",
+    "Thumbnail"
+  ],
+  "components": [
+    {
+      "component": "BadgeAd",
+      "category": "Badges",
+      "file": "components/BadgeAd.json"
+    },
+    {
+      "component": "BadgeCount",
+      "category": "Badges",
+      "file": "components/BadgeCount.json"
+    },
+    {
+      "component": "BadgeOverlay",
+      "category": "Badges",
+      "file": "components/BadgeOverlay.json"
+    },
+    {
+      "component": "BadgeTooltip",
+      "category": "Badges",
+      "file": "components/BadgeTooltip.json"
+    },
+    {
+      "component": "BadgeVerified",
+      "category": "Badges",
+      "file": "components/BadgeVerified.json"
+    },
+    {
+      "component": "ButtonBasic",
+      "category": "Buttons",
+      "file": "components/ButtonBasic.json"
+    },
+    {
+      "component": "Button",
+      "category": "Buttons",
+      "file": "components/Button.json"
+    },
+    {
+      "component": "ButtonGroup",
+      "category": "Buttons",
+      "file": "components/ButtonGroup.json"
+    },
+    {
+      "component": "ButtonIcon",
+      "category": "Buttons",
+      "file": "components/ButtonIcon.json"
+    },
+    {
+      "component": "ButtonSegment",
+      "category": "Buttons",
+      "file": "components/ButtonSegment.json"
+    },
+    {
+      "component": "Chip",
+      "category": "Chip",
+      "file": "components/Chip.json"
+    },
+    {
+      "component": "Dialog",
+      "category": "Dialogs",
+      "file": "components/Dialog.json"
+    },
+    {
+      "component": "Divider",
+      "category": "Divider",
+      "file": "components/Divider.json"
+    },
+    {
+      "component": "HeaderBlock",
+      "category": "Header",
+      "file": "components/HeaderBlock.json"
+    },
+    {
+      "component": "Handle",
+      "category": "Header",
+      "file": "components/Handle.json"
+    },
+    {
+      "component": "Indicator",
+      "category": "Header",
+      "file": "components/Indicator.json"
+    },
+    {
+      "component": "HeaderTitle",
+      "category": "Header",
+      "file": "components/HeaderTitle.json"
+    },
+    {
+      "component": "Icon",
+      "category": "Icon",
+      "file": "components/Icon.json"
+    },
+    {
+      "component": "ImageRect",
+      "category": "Images",
+      "file": "components/ImageRect.json"
+    },
+    {
+      "component": "Pagination",
+      "category": "Pagination",
+      "file": "components/Pagination.json"
+    },
+    {
+      "component": "PopoverInfo",
+      "category": "Popover",
+      "file": "components/PopoverInfo.json"
+    },
+    {
+      "component": "PopoverMore",
+      "category": "Popover",
+      "file": "components/PopoverMore.json"
+    },
+    {
+      "component": "PopoverTooltip",
+      "category": "Popover",
+      "file": "components/PopoverTooltip.json"
+    },
+    {
+      "component": "ProfileHorizontal",
+      "category": "Profile",
+      "file": "components/ProfileHorizontal.json"
+    },
+    {
+      "component": "Profile",
+      "category": "Profile",
+      "file": "components/Profile.json"
+    },
+    {
+      "component": "ReactionHorizontal",
+      "category": "Reaction",
+      "file": "components/ReactionHorizontal.json"
+    },
+    {
+      "component": "ReactionVertical",
+      "category": "Reaction",
+      "file": "components/ReactionVertical.json"
+    },
+    {
+      "component": "Selection",
+      "category": "Selection",
+      "file": "components/Selection.json"
+    },
+    {
+      "component": "SwitchTab",
+      "category": "Switch",
+      "file": "components/SwitchTab.json"
+    },
+    {
+      "component": "SwitchToggle",
+      "category": "Switch",
+      "file": "components/SwitchToggle.json"
+    },
+    {
+      "component": "Tab",
+      "category": "Tabs",
+      "file": "components/Tab.json"
+    },
+    {
+      "component": "TabList",
+      "category": "Tabs",
+      "file": "components/TabList.json"
+    },
+    {
+      "component": "Thumbnail",
+      "category": "Thumbnail",
+      "file": "components/Thumbnail.json"
+    }
+  ]
+}

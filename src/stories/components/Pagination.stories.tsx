@@ -56,7 +56,7 @@ const PaginationDemo = ({ totalPages, variant }: { totalPages: number; variant: 
 const meta: Meta<typeof Pagination> = {
   title: 'Components/Pagination',
   component: Pagination,
-  tags: ['autodocs'],
+  // docs page는 Pagination.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

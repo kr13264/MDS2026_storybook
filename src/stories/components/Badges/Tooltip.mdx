@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+툴팁형 뱃지 컴포넌트입니다.
+신규 기능 안내, 구독 알림 등에 사용합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={TooltipStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={TooltipStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

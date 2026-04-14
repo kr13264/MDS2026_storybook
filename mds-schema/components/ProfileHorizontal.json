@@ -1,0 +1,72 @@
+{
+  "component": "ProfileHorizontal",
+  "category": "Profile",
+  "description": "MDS ProfileHorizontal component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "아바타 사이즈 (default=36px · small=28px)",
+      "values": [
+        "default",
+        "small"
+      ],
+      "default": "default"
+    },
+    "emphasis": {
+      "type": "boolean",
+      "required": false,
+      "description": "이름 강조 — fontWeight 400 → 600",
+      "default": false
+    },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "선택 상태 — 아바타에 파란 테두리(#3283fd) 표시",
+      "default": false
+    },
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "아바타 이미지 URL"
+    },
+    "alt": {
+      "type": "string",
+      "required": false,
+      "description": "아바타 alt 텍스트",
+      "default": ""
+    },
+    "name": {
+      "type": "string",
+      "required": false,
+      "description": "프로필/채널 이름",
+      "default": "프로필명"
+    },
+    "sub": {
+      "type": "string",
+      "required": false,
+      "description": "이름 옆 서브 레이블 (점 구분자로 연결)"
+    },
+    "label": {
+      "type": "boolean",
+      "required": false,
+      "description": "서브 레이블 표시 여부",
+      "default": true
+    },
+    "info": {
+      "type": "string",
+      "required": false,
+      "description": "하단 서브 텍스트 (시간, 채널 정보 등)"
+    },
+    "date": {
+      "type": "boolean",
+      "required": false,
+      "description": "하단 서브 텍스트 표시 여부",
+      "default": true
+    }
+  }
+}

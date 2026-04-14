@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ThumbnailStories from './Thumbnail.stories';
+
+<Meta of={ThumbnailStories} />
+
+# Thumbnail
+
+이미지 위에 배지·아이콘·프로필·재생시간 등 슬롯 오버레이를 배치하는 Thumbnail 컴포넌트.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ThumbnailStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ThumbnailStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

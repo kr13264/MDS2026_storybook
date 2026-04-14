@@ -29,7 +29,7 @@ const Phone = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof HeaderBlock> = {
   title: 'Components/Header/Block',
   component: HeaderBlock,
-  tags: ['autodocs'],
+  // docs page는 Block.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -71,7 +71,7 @@ import { HeaderBlock } from '@/components/Header';
       description: '타이틀 텍스트',
       table: { defaultValue: { summary: '타이틀' } },
     },
-    trailingSlot: {
+    showTailIcon: {
       control: 'boolean',
       description: 'Trailing 슬롯 표시',
       table: { defaultValue: { summary: 'true' } },
@@ -87,7 +87,7 @@ export const Playground: Story = {
   args: {
     type: 'SheetsTitle',
     title: '타이틀',
-    trailingSlot: true,
+    showTailIcon: true,
   },
   render: (args) => (
     <Phone>
@@ -122,12 +122,12 @@ export const Slots: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
       <Block label="With Trailing" desc="닫기 버튼이 포함된 기본 상태입니다.">
         <Phone>
-          <HeaderBlock type="SheetsTitle" title="타이틀" trailingSlot />
+          <HeaderBlock type="SheetsTitle" title="타이틀" showTailIcon />
         </Phone>
       </Block>
       <Block label="Without Trailing" desc="닫기 버튼을 숨긴 상태입니다.">
         <Phone>
-          <HeaderBlock type="SheetsTitle" title="타이틀" trailingSlot={false} />
+          <HeaderBlock type="SheetsTitle" title="타이틀" showTailIcon={false} />
         </Phone>
       </Block>
     </div>
@@ -141,7 +141,7 @@ export const Matrix: Story = {
     const types: HeaderBlockType[] = ['SheetsTitle', 'BlockTitle'];
     const configs = [
       { label: 'Default', props: {} },
-      { label: 'No Trailing', props: { trailingSlot: false } },
+      { label: 'No Trailing', props: { showTailIcon: false } },
       { label: 'Long Title', props: { title: '매우 긴 타이틀이 들어가는 경우' } },
     ];
 

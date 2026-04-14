@@ -1,0 +1,61 @@
+{
+  "component": "Chip",
+  "category": "Chip",
+  "description": "MDS Chip component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "칩 타입",
+      "values": [
+        "label",
+        "iconOnly",
+        "thumbnail"
+      ],
+      "default": "label"
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "사이즈",
+      "values": [
+        "sm",
+        "md"
+      ],
+      "default": "md"
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "레이블 텍스트 (type=label | thumbnail)",
+      "default": "레이블"
+    },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "선택 상태",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "비활성 상태",
+      "default": false
+    },
+    "multiSelect": {
+      "type": "boolean",
+      "required": false,
+      "description": "다중 선택 모드 — 선택 시 우측에 닫기 아이콘 표시",
+      "default": false
+    },
+    "thumbnail": {
+      "type": "string",
+      "required": false,
+      "description": "썸네일 이미지 URL (type=thumbnail)"
+    }
+  }
+}

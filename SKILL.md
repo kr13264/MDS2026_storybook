@@ -173,6 +173,10 @@ xl:  1280px — 데스크탑
 
 ## 4. Story 파일 템플릿
 
+> **autodocs 사용 금지** — `tags: ['autodocs']` 제거하고, 반드시 **MDX Docs 파일**을 함께 생성한다.
+
+### Story 파일 (`{Name}.stories.tsx`)
+
 ```tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import { ComponentName } from '@/components/ComponentName';
@@ -180,17 +184,64 @@ import { ComponentName } from '@/components/ComponentName';
 const meta: Meta<typeof ComponentName> = {
   title: 'Components/ComponentName',
   component: ComponentName,
-  tags: ['autodocs'],
+  // docs page는 {Name}.mdx에서 관리 — tags: ['autodocs'] 사용 금지
   parameters: { layout: 'centered' },
 };
 
 export default meta;
 type Story = StoryObj<typeof ComponentName>;
 
-export const Default: Story = {
-  args: { children: 'Label' },
+export const Playground: Story = {
+  args: { /* default props */ },
 };
 ```
+
+### MDX Docs 파일 (`{Name}.mdx`)
+
+컴포넌트 스토리와 같은 폴더에 MDX 파일을 생성한다. 아래 구조를 그대로 따른다.
+
+```mdx
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ComponentStories from './ComponentName.stories';
+
+<Meta of={ComponentStories} />
+
+# ComponentName
+
+컴포넌트 설명 한 줄.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ComponentStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ComponentStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />
+```
+
+### MDX Docs 레이아웃 규칙
+
+| 순서 | 내용 | 비고 |
+|------|------|------|
+| 1 | `# 타이틀` | 36px / 800 weight |
+| 2 | 설명 텍스트 | 13px / #55557A |
+| 3 | `---` + 40px 여백 | 구분선 |
+| 4 | `## Preview` | 20px / 700 weight |
+| 5 | `<Canvas sourceState="hidden" />` | 소스코드 기본 닫힘 |
+| 6 | `## Properties` | 20px / 700 weight |
+| 7 | `<Controls />` | 프로퍼티 컨트롤 테이블 |
+| 8 | `---` + 40px 여백 | 구분선 |
+| 9 | `<Stories />` | 나머지 스토리 (Playground 제외) |
 
 ---
 
@@ -228,46 +279,43 @@ Assets
 ├── Icon              ← 아이콘 다운로드 (iframe)
 └── container.icon    ← 아이콘 컴포넌트 (Size, Style)
 Components
-├── Actions
-│   ├── Buttons       (Docs, Basic, Icon, Segment, Group)
-│   ├── Chip
-│   ├── Tabs
-│   ├── Controls      (Switch, Search)
-│   └── Reaction
-├── Display
-│   ├── Badges        (Docs, Overlay, Ad, Count, Tooltip, Verified)
-│   ├── Images
-│   ├── Thumbnail
-│   ├── Profile
-│   └── Divider
-├── Overlay
-│   ├── Dialogs
-│   ├── Sheets
-│   ├── Snackbar
-│   └── Popover
-└── Navigation
-    └── Pagination
+├── Badges            (Docs, Overlay, Ad, Count, Tooltip, Verified)
+├── Buttons           (Docs, Basic, Icon, Segment, Group)
+├── Chip
+├── Controls          (Switch, Search)
+├── Dialogs
+├── Divider
+├── Header
+├── Images
+├── Pagination
+├── Popover
+├── Profile
+├── Reaction
+├── Sheets
+├── Snackbar
+├── Tabs
+└── Thumbnail
 Templates
 ```
 
 ### title 네이밍 규칙
 
-스토리 title은 반드시 카테고리를 포함해야 합니다:
+스토리 title은 `Components/` 바로 아래에 컴포넌트명을 배치합니다 (중간 카테고리 없음):
 
 ```tsx
 // ✅ 올바른 title
-title: 'Components/Actions/Buttons'
-title: 'Components/Actions/Buttons/Basic'
-title: 'Components/Display/Badges'
-title: 'Components/Display/Badges/Overlay'
-title: 'Components/Overlay/Dialogs'
-title: 'Components/Navigation/Pagination'
+title: 'Components/Buttons'
+title: 'Components/Buttons/Basic'
+title: 'Components/Badges'
+title: 'Components/Badges/Overlay'
+title: 'Components/Dialogs'
+title: 'Components/Pagination'
 title: 'Assets/Icon'
 title: 'Assets/container.icon'
 
-// ❌ 카테고리 누락 금지
-title: 'Components/Buttons'          // Actions 누락
-title: 'Components/Badges/Overlay'   // Display 누락
+// ❌ 중간 카테고리 금지
+title: 'Components/Actions/Buttons'    // Actions 불필요
+title: 'Components/Overlay/Dialogs'    // Overlay 불필요
 ```
 
 ### storySort 설정 (.storybook/preview.tsx)
@@ -279,10 +327,22 @@ storySort: {
     'Assets', ['Icon', 'container.icon', '*'],
     'Components',
     [
-      'Actions', ['Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'], 'Chip', 'Tabs', 'Controls', 'Reaction', '*'],
-      'Display', ['Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'], 'Images', 'Thumbnail', 'Profile', 'Divider', '*'],
-      'Overlay', ['Dialogs', 'Sheets', 'Snackbar', 'Popover', '*'],
-      'Navigation', ['Pagination', '*'],
+      'Badges', ['Docs', 'Overlay', 'Ad', 'Count', 'Tooltip', 'Verified', 'Overview', '*'],
+      'Buttons', ['Docs', 'Basic', 'Icon', 'Segment', 'Group', 'Overview', '*'],
+      'Chip',
+      'Controls', ['Docs', 'Switch', 'Search', '*'],
+      'Dialogs',
+      'Divider',
+      'Header',
+      'Images',
+      'Pagination',
+      'Popover',
+      'Profile',
+      'Reaction',
+      'Sheets',
+      'Snackbar',
+      'Tabs',
+      'Thumbnail',
       '*',
     ],
     'Templates', '*',
@@ -315,46 +375,10 @@ storySort: {
 { name: 'Selected' }
 ```
 
-### Docs description 형식 (meta.parameters.docs)
+### Docs 설명 위치
 
-```tsx
-parameters: {
-  layout: 'centered',
-  docs: {
-    description: {
-      component: `
-첫 줄: 컴포넌트 설명
-
----
-<div style="margin-bottom:30px"></div>
-
-### Size
-
-| Size | 설명 |
-|------|------|
-| default | 기본 크기 |
-| small   | 소형     |
-
-### Emphasis
-
-| Emphasis | 설명 |
-|----------|------|
-| false    | 기본 |
-| true     | 강조 |
-
-\`\`\`tsx
-// 사용 예시
-<ComponentName size="default" emphasis={false} />
-\`\`\`
-      `,
-    },
-  },
-},
-```
-
-- `---` 구분선 다음 반드시 `<div style="margin-bottom:30px"></div>` 30px 공백
-- 섹션별 pipe table 사용 (`### Size`, `### Emphasis` 등)
-- 마지막에 사용 예시 코드블록 포함
+> 컴포넌트 설명은 **MDX 파일**의 `# 타이틀` 아래에 직접 작성한다.
+> `meta.parameters.docs.description`은 더 이상 사용하지 않는다.
 
 ### 레이아웃 헬퍼 (스토리 파일 공통)
 
@@ -468,7 +492,120 @@ viteFinal(config) {
 
 ---
 
-## 9. 참고
+## 9. Vercel 배포 (정적 배포)
+
+`@bonui/styles`가 사내 npm 레지스트리에 있어 Vercel에서 `pnpm install` 불가. **로컬 빌드 → 정적 파일 배포** 방식 사용.
+
+### Vercel 프로젝트 설정
+
+| 항목 | 값 |
+|------|-----|
+| Install Command | `exit 0` |
+| Build Command | `exit 0` |
+| Output Directory | `storybook-static` |
+
+### 배포 순서
+
+```bash
+# 1. 로컬에서 Storybook 빌드
+pnpm build-storybook
+
+# 2. storybook-static 포함하여 커밋
+git add -f storybook-static/
+git commit -m "chore: rebuild storybook-static"
+
+# 3. GitHub push → Vercel 자동 배포
+git push mystory main
+```
+
+### Git 리모트 구성
+
+| 리모트 | URL | 용도 |
+|--------|-----|------|
+| `origin` | `oss.navercorp.com/nappmain/MDS2026` | 사내 저장소 |
+| `mystory` | `github.com/kr13264/MDS2026_storybook` | Vercel 배포용 |
+
+---
+
+## 10. MDS Builder 규칙
+
+MDS Builder는 Storybook 내에서 모바일 앱 화면을 시각적으로 조합하는 도구입니다.
+
+### 파일 구조
+
+| 파일 | 설명 |
+|------|------|
+| `src/builder/BuilderPlayground.tsx` | 메인 빌더 (Palette, NodeRenderer, PreviewRenderer, 에디터 포함) |
+| `src/builder/ComponentRegistry.ts` | JSON 스키마 component 이름 → React 컴포넌트 매핑 |
+| `src/builder/schemaData.ts` | Vite glob으로 `mds-schema/components/*.json` 로드 |
+| `src/stories/builder/BuilderPlayground.stories.tsx` | Story: `Builder/Playground` |
+| `src/stories/templates/LandingPage.stories.tsx` | Story: `Templates/Builder Guide` |
+
+### 계층 구조 (Layer Hierarchy)
+
+```
+root
+└── section (header / body / footer)
+    └── items (L1: vert / horz / grid 방향 설정)
+        └── comp (실제 MDS 컴포넌트)
+```
+
+- **root** — 페이지 최상위, 3개의 section을 가짐
+- **section** — `header`, `body`, `footer`. 각각 gap/padding 설정 가능
+- **items** — 컴포넌트 그룹. 방향(vert/horz/grid) 설정 가능
+- **comp** — 실제 렌더링되는 MDS 컴포넌트 (Thumbnail, ButtonBasic 등)
+
+### 컴포넌트 추가 규칙
+
+1. **컴포넌트 클릭** → 항상 새 items 그룹 생성 (그 안에 comp 1개)
+2. **같은 컴포넌트 다시 클릭** → 마지막 items 그룹에 추가 (vert/horz/grid 방향 설정 가능)
+3. **다른 컴포넌트 클릭** → 새 items 그룹 생성
+4. **"+ 생성" 버튼** → 빈 items 그룹 수동 생성
+
+### 섹션 제한
+
+| 섹션 | 제한 |
+|------|------|
+| header | items 그룹 자유 추가 |
+| body | items 그룹 10개 이하 |
+| footer | items 그룹 자유 추가 |
+
+### Items 방향 (ItemsDirection)
+
+| 값 | 설명 | CSS |
+|----|------|-----|
+| `vert` | 세로 나열 | `flex-direction: column` |
+| `horz` | 가로 캐로셀 | `flex-direction: row` |
+| `grid` | 2열 그리드 | `grid-template-columns: repeat(2, 1fr)` |
+
+### 뷰 모드
+
+| 모드 | 설명 |
+|------|------|
+| **Edit** | 편집 모드 — 점선 테두리, 삭제 버튼, 드래그앤드롭 |
+| **Preview** | 미리보기 — 편집 UI 없이 깨끗한 실제 화면 |
+| **JSON** | 내보내기용 JSON 구조 확인 |
+
+### Palette 카테고리
+
+| 카테고리 | 컴포넌트 |
+|----------|----------|
+| Header | Profile, ProfileHorizontal, HeaderTitle, HeaderBlock, Handle, Indicator |
+| Body | Thumbnail, ImageRect, TabList, Tab, Chip, Selection, SwitchToggle, SwitchTab, Dialog, Divider |
+| Footer | ReactionHorizontal, ReactionVertical, Pagination, ButtonBasic, ButtonIcon, ButtonSegment, ButtonGroup |
+| Etc. | PopoverTooltip, PopoverInfo, PopoverMore (Icon, Badge 제외) |
+
+### 기술 제약
+
+- 빌더 내부는 **inline style** 사용 (Tailwind 아님)
+- HTML5 Drag and Drop API 사용 (외부 라이브러리 없음)
+- Undo/Redo: `Cmd+Z` / `Cmd+Shift+Z` (ref 기반 history stack, 최대 50)
+- 캔버스 폰 프레임: width 393px, 높이 hug (콘텐츠 맞춤)
+- Thumbnail/ImageRect는 빌더 내에서 `width: '100%'`로 강제 전달
+
+---
+
+## 11. 참고
 
 - Storybook 로컬: `http://localhost:6006/`
 - Tailwind CSS v4 docs: https://tailwindcss.com

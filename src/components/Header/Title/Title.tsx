@@ -36,14 +36,14 @@ const IcDefault = () => (
 export const HeaderTitle = ({
   title = '타이틀',
   layout = 'Left',
-  leadingSlot = true,
-  trailingSlot = true,
-  front,
-  back,
-  titlePrefix = false,
-  titlePrefixIcon,
-  titleSuffix = false,
-  titleSuffixIcon,
+  headIcon,
+  showHeadIcon = true,
+  tailIcon,
+  showTailIcon = true,
+  titlePrefix,
+  showTitlePrefix = false,
+  titleSuffix,
+  showTitleSuffix = false,
   className = '',
 }: HeaderTitleProps) => {
   const isCenter = layout === 'Center';
@@ -80,20 +80,20 @@ export const HeaderTitle = ({
     color: 'var(--color-neutral-foreground-default, #000)',
   };
 
-  const renderFront = () => {
-    if (!leadingSlot) return null;
+  const renderHeadIcon = () => {
+    if (!showHeadIcon) return null;
     return (
       <div style={slotStyle}>
-        {front ?? <IcArrowLeft />}
+        {headIcon ?? <IcArrowLeft />}
       </div>
     );
   };
 
-  const renderBack = () => {
-    if (!trailingSlot) return null;
+  const renderTailIcon = () => {
+    if (!showTailIcon) return null;
     return (
       <div style={slotStyle}>
-        {back ?? <IcClose />}
+        {tailIcon ?? <IcClose />}
       </div>
     );
   };
@@ -108,15 +108,15 @@ export const HeaderTitle = ({
         flexShrink: 0,
       }}
     >
-      {titlePrefix && (
+      {showTitlePrefix && (
         <div style={prefixSuffixSlot}>
-          {titlePrefixIcon ?? <IcDefault />}
+          {titlePrefix ?? <IcDefault />}
         </div>
       )}
       <p style={titleStyle}>{title}</p>
-      {titleSuffix && (
+      {showTitleSuffix && (
         <div style={prefixSuffixSlot}>
-          {titleSuffixIcon ?? <IcDefault />}
+          {titleSuffix ?? <IcDefault />}
         </div>
       )}
     </div>
@@ -135,12 +135,10 @@ export const HeaderTitle = ({
           position: 'relative',
         }}
       >
-        {/* Leading — 좌측 고정 */}
         <div style={{ width: 30, flexShrink: 0 }}>
-          {renderFront()}
+          {renderHeadIcon()}
         </div>
 
-        {/* Center — 가운데 타이틀 */}
         <div
           style={{
             flex: '1 0 0',
@@ -155,9 +153,8 @@ export const HeaderTitle = ({
           {renderTitleGroup()}
         </div>
 
-        {/* Trailing — 우측 고정 */}
         <div style={{ width: 30, flexShrink: 0, display: 'flex', justifyContent: 'center' }}>
-          {renderBack()}
+          {renderTailIcon()}
         </div>
       </div>
     );
@@ -175,7 +172,6 @@ export const HeaderTitle = ({
         height: 30,
       }}
     >
-      {/* Leading + Title */}
       <div
         style={{
           display: 'flex',
@@ -185,12 +181,11 @@ export const HeaderTitle = ({
           minWidth: 0,
         }}
       >
-        {renderFront()}
+        {renderHeadIcon()}
         {renderTitleGroup()}
       </div>
 
-      {/* Trailing */}
-      {renderBack()}
+      {renderTailIcon()}
     </div>
   );
 };

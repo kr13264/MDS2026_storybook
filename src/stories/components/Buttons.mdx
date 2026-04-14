@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as ButtonsStories from './Buttons.stories';
+
+<Meta of={ButtonsStories} />
+
+# Buttons
+
+활용 목적에 따라 **4개의 type**으로 구분합니다.
+각 타입은 총 6개의 size 중 적절한 값으로 적용합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ButtonsStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ButtonsStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

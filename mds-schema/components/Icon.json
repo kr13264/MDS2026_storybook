@@ -1,0 +1,47 @@
+{
+  "component": "Icon",
+  "category": "Icon",
+  "description": "MDS Icon component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "name": {
+      "type": "IconName",
+      "required": true,
+      "description": "아이콘 이름"
+    },
+    "variant": {
+      "type": "enum",
+      "required": false,
+      "description": "아이콘 스타일",
+      "values": [
+        "filled",
+        "outlined"
+      ],
+      "default": "outlined"
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "아이콘 사이즈",
+      "values": [
+        "xl",
+        "lg",
+        "md",
+        "sm",
+        "xs",
+        "2xs",
+        "3xs"
+      ],
+      "default": "lg"
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "description": "색상 (CSS color)",
+      "default": "currentColor"
+    }
+  }
+}

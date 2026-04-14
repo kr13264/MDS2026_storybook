@@ -1,0 +1,40 @@
+{
+  "component": "PopoverTooltip",
+  "category": "Popover",
+  "description": "MDS PopoverTooltip component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "말풍선 텍스트",
+      "default": "내 관심을 반영해 취향을 받아 보세요!"
+    },
+    "direction": {
+      "type": "enum",
+      "required": false,
+      "description": "말풍선 방향",
+      "values": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "default": "top"
+    },
+    "align": {
+      "type": "enum",
+      "required": false,
+      "description": "꼬리 정렬",
+      "values": [
+        "start",
+        "center",
+        "end"
+      ],
+      "default": "start"
+    }
+  }
+}

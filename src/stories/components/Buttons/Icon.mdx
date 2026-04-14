@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+단일 아이콘만 표시하는 버튼입니다.
+레이블 없이 다운로드, 공유, 편집 등 단일 기능을 수행할 때 사용합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={IconStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={IconStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

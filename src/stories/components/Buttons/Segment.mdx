@@ -1,0 +1,27 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as SegmentStories from './Segment.stories';
+
+<Meta of={SegmentStories} />
+
+# Segment
+
+동일 위계의 옵션 중 단일 선택이 필요한 경우 사용하는 세그먼트 버튼입니다.
+2~4개의 옵션을 지원하며, **half**(텍스트+구분선)와 **full**(균등 분할) 두 가지 너비 유형을 제공합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={SegmentStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={SegmentStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

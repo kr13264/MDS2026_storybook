@@ -1,0 +1,106 @@
+{
+  "component": "ImageRect",
+  "category": "Images",
+  "description": "MDS ImageRect component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "src": {
+      "type": "string",
+      "required": false,
+      "description": "이미지 URL",
+      "default": "https://images.unsplash.com/photo-1596367407372-96cb88503db6?q=80&w=800&auto=format&fit=crop"
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "이미지 표시 타입 (default · noImage · placeHolder)",
+      "values": [
+        "default",
+        "noImage",
+        "placeHolder"
+      ],
+      "default": "image"
+    },
+    "ratio": {
+      "type": "enum",
+      "required": false,
+      "description": "비율 기준 (1:1 · 16:9 · 3:2 · 3:4 · 3:4.5 · 3:5 · noFix)",
+      "values": [
+        "1:1",
+        "16:9",
+        "3:2",
+        "3:4",
+        "3:4.5",
+        "3:5",
+        "noFix"
+      ],
+      "default": "1:1"
+    },
+    "opacity": {
+      "type": "enum",
+      "required": false,
+      "description": "딤 레이어 불투명도 (none · 3% · 40%)",
+      "values": [
+        "none",
+        "3%",
+        "40%"
+      ],
+      "default": "none"
+    },
+    "shadow": {
+      "type": "enum",
+      "required": false,
+      "description": "그림자 그라디언트 방향 (none · up · down · up&down)",
+      "values": [
+        "none",
+        "up",
+        "down",
+        "up&down"
+      ],
+      "default": "none"
+    },
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "하단 오버레이 텍스트 레이블"
+    },
+    "icon": {
+      "type": "boolean",
+      "required": false,
+      "description": "우상단 아이콘 뱃지 표시 여부",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "비활성화 상태 (opacity 0.35, pointer-events none)",
+      "default": false
+    },
+    "radius": {
+      "type": "enum",
+      "required": false,
+      "description": "border-radius 크기",
+      "values": [
+        "md",
+        "lg",
+        "none"
+      ],
+      "default": 0
+    },
+    "fit": {
+      "type": "enum",
+      "required": false,
+      "description": "이미지 object-fit (cover · contain · fill · scale-down)",
+      "values": [
+        "cover",
+        "contain",
+        "fill",
+        "scale-down"
+      ],
+      "default": "cover"
+    }
+  }
+}

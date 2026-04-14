@@ -27,7 +27,7 @@ const Caption = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof ButtonGroup> = {
   title: 'Components/Buttons/Group',
   component: ButtonGroup,
-  tags: ['autodocs'],
+  // docs page는 Group.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

@@ -1,0 +1,56 @@
+{
+  "component": "ButtonGroup",
+  "category": "Buttons",
+  "description": "MDS ButtonGroup component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "cancelLabel": {
+      "type": "string",
+      "required": false,
+      "description": "취소 버튼 레이블",
+      "default": "취소"
+    },
+    "confirmLabel": {
+      "type": "string",
+      "required": false,
+      "description": "확인 버튼 레이블",
+      "default": "확인"
+    },
+    "shape": {
+      "type": "enum",
+      "required": false,
+      "description": "버튼 형태 — square(사각) · round(원형)",
+      "values": [
+        "square",
+        "round"
+      ],
+      "default": "square"
+    },
+    "size": {
+      "type": "enum",
+      "required": false,
+      "description": "높이 기준 사이즈",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "default": "md"
+    },
+    "fullWidth": {
+      "type": "boolean",
+      "required": false,
+      "description": "전체 너비",
+      "default": false
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "description": "전체 비활성",
+      "default": false
+    }
+  }
+}

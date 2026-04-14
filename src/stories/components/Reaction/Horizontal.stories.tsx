@@ -22,7 +22,7 @@ const Block = ({ label, desc, children }: { label: string; desc?: string; childr
 const meta: Meta<typeof ReactionHorizontal> = {
   title: 'Components/Reaction/Horizontal',
   component: ReactionHorizontal,
-  tags: ['autodocs'],
+  // docs page는 Horizontal.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {

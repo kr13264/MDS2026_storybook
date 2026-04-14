@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Stories } from '@storybook/blocks';
+import * as DialogsStories from './index.stories';
+
+<Meta of={DialogsStories} />
+
+# Dialogs
+
+모달 다이얼로그 컴포넌트.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={DialogsStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={DialogsStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

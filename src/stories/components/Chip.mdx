@@ -1,0 +1,27 @@
+import { Meta, Title, Description, Primary, Controls, Stories, Source, Canvas } from '@storybook/blocks';
+import * as ChipStories from './Chip.stories';
+
+<Meta of={ChipStories} />
+
+# Chip
+
+선택 가능한 태그/필터 칩 컴포넌트입니다.
+단일 선택과 다중 선택(태그 제거) 모드를 지원합니다.
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+## Preview
+
+<Canvas of={ChipStories.Playground} sourceState="hidden" />
+
+## Properties
+
+<Controls of={ChipStories.Playground} />
+
+---
+
+<div style={{marginBottom: '40px'}} />
+
+<Stories includePrimary={false} />

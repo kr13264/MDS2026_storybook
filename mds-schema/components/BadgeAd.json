@@ -1,0 +1,44 @@
+{
+  "component": "BadgeAd",
+  "category": "Badges",
+  "description": "MDS BadgeAd component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "뱃지 타입",
+      "values": [
+        "best",
+        "couponBig",
+        "couponSmall",
+        "official",
+        "purchase",
+        "rating",
+        "review",
+        "wish"
+      ],
+      "default": "best"
+    },
+    "text": {
+      "type": "string",
+      "required": false,
+      "description": "텍스트 (best, couponBig, couponSmall, official, purchase, review, wish)"
+    },
+    "rating": {
+      "type": "number",
+      "required": false,
+      "description": "별점 (rating 전용)",
+      "default": 4
+    },
+    "reviewCount": {
+      "type": "number",
+      "required": false,
+      "description": "리뷰 수 (rating 전용)",
+      "default": 87
+    }
+  }
+}

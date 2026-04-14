@@ -30,7 +30,7 @@ const Phone = ({ children }: { children: React.ReactNode }) => (
 const meta: Meta<typeof HeaderTitle> = {
   title: 'Components/Header/Title',
   component: HeaderTitle,
-  tags: ['autodocs'],
+  // docs page는 Title.mdx에서 관리
   parameters: {
     layout: 'centered',
     docs: {
@@ -54,10 +54,10 @@ const meta: Meta<typeof HeaderTitle> = {
 
 | Slot | Description |
 |------|-------------|
-| \`front\` | Leading 영역 (기본: ← 뒤로가기) |
-| \`back\` | Trailing 영역 (기본: × 닫기) |
-| \`titlePrefixIcon\` | 타이틀 앞 아이콘 |
-| \`titleSuffixIcon\` | 타이틀 뒤 아이콘 |
+| \`headIcon\` | Leading 영역 (기본: ← 뒤로가기) |
+| \`tailIcon\` | Trailing 영역 (기본: × 닫기) |
+| \`titlePrefix\` | 타이틀 앞 아이콘 |
+| \`titleSuffix\` | 타이틀 뒤 아이콘 |
 
 \`\`\`tsx
 import { HeaderTitle } from '@/components/Header';
@@ -81,22 +81,22 @@ import { HeaderTitle } from '@/components/Header';
       description: '타이틀 텍스트',
       table: { defaultValue: { summary: '타이틀' } },
     },
-    leadingSlot: {
+    showHeadIcon: {
       control: 'boolean',
-      description: 'Leading 슬롯 표시',
+      description: 'Leading 아이콘 표시',
       table: { defaultValue: { summary: 'true' } },
     },
-    trailingSlot: {
+    showTailIcon: {
       control: 'boolean',
-      description: 'Trailing 슬롯 표시',
+      description: 'Trailing 아이콘 표시',
       table: { defaultValue: { summary: 'true' } },
     },
-    titlePrefix: {
+    showTitlePrefix: {
       control: 'boolean',
       description: '타이틀 앞 아이콘 표시',
       table: { defaultValue: { summary: 'false' } },
     },
-    titleSuffix: {
+    showTitleSuffix: {
       control: 'boolean',
       description: '타이틀 뒤 아이콘 표시',
       table: { defaultValue: { summary: 'false' } },
@@ -112,10 +112,10 @@ export const Playground: Story = {
   args: {
     title: '타이틀',
     layout: 'Left',
-    leadingSlot: true,
-    trailingSlot: true,
-    titlePrefix: false,
-    titleSuffix: false,
+    showHeadIcon: true,
+    showTailIcon: true,
+    showTitlePrefix: false,
+    showTitleSuffix: false,
   },
   render: (args) => (
     <Phone>
@@ -129,12 +129,12 @@ export const Layout: Story = {
   name: 'Layout',
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-      <Block label="Left" desc="타이틀이 좌측에 정렬되며, Leading 아이콘 옆에 위치합니다.">
+      <Block label="Left" desc="타이틀이 좌측에 정렬되며, headIcon 옆에 위치합니다.">
         <Phone>
           <HeaderTitle title="타이틀" layout="Left" />
         </Phone>
       </Block>
-      <Block label="Center" desc="타이틀이 중앙에 정렬되며, Leading/Trailing 아이콘이 양 끝에 위치합니다.">
+      <Block label="Center" desc="타이틀이 중앙에 정렬되며, headIcon/tailIcon이 양 끝에 위치합니다.">
         <Phone>
           <HeaderTitle title="타이틀" layout="Center" />
         </Phone>
@@ -150,22 +150,22 @@ export const Slots: Story = {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
       <Block label="All Slots" desc="모든 슬롯이 활성화된 상태입니다.">
         <Phone>
-          <HeaderTitle title="타이틀" layout="Left" titlePrefix titleSuffix />
+          <HeaderTitle title="타이틀" layout="Left" showTitlePrefix showTitleSuffix />
         </Phone>
       </Block>
-      <Block label="Leading Only" desc="Trailing 슬롯을 숨긴 상태입니다.">
+      <Block label="headIcon Only" desc="tailIcon을 숨긴 상태입니다.">
         <Phone>
-          <HeaderTitle title="타이틀" layout="Left" trailingSlot={false} />
+          <HeaderTitle title="타이틀" layout="Left" showTailIcon={false} />
         </Phone>
       </Block>
-      <Block label="Trailing Only" desc="Leading 슬롯을 숨긴 상태입니다.">
+      <Block label="tailIcon Only" desc="headIcon을 숨긴 상태입니다.">
         <Phone>
-          <HeaderTitle title="타이틀" layout="Left" leadingSlot={false} />
+          <HeaderTitle title="타이틀" layout="Left" showHeadIcon={false} />
         </Phone>
       </Block>
-      <Block label="Title Only" desc="양쪽 슬롯을 모두 숨긴 상태입니다.">
+      <Block label="Title Only" desc="양쪽 아이콘을 모두 숨긴 상태입니다.">
         <Phone>
-          <HeaderTitle title="타이틀" layout="Left" leadingSlot={false} trailingSlot={false} />
+          <HeaderTitle title="타이틀" layout="Left" showHeadIcon={false} showTailIcon={false} />
         </Phone>
       </Block>
     </div>
@@ -179,11 +179,11 @@ export const Matrix: Story = {
     const layouts: HeaderTitleLayout[] = ['Left', 'Center'];
     const configs = [
       { label: 'Default', props: {} },
-      { label: 'Prefix', props: { titlePrefix: true } },
-      { label: 'Suffix', props: { titleSuffix: true } },
-      { label: 'Prefix + Suffix', props: { titlePrefix: true, titleSuffix: true } },
-      { label: 'No Leading', props: { leadingSlot: false } },
-      { label: 'No Trailing', props: { trailingSlot: false } },
+      { label: 'titlePrefix', props: { showTitlePrefix: true } },
+      { label: 'titleSuffix', props: { showTitleSuffix: true } },
+      { label: 'Prefix + Suffix', props: { showTitlePrefix: true, showTitleSuffix: true } },
+      { label: 'No headIcon', props: { showHeadIcon: false } },
+      { label: 'No tailIcon', props: { showTailIcon: false } },
     ];
 
     return (

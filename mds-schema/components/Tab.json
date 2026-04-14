@@ -1,0 +1,58 @@
+{
+  "component": "Tab",
+  "category": "Tabs",
+  "description": "MDS Tab component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "label": {
+      "type": "string",
+      "required": false,
+      "description": "레이블 텍스트",
+      "default": "레이블"
+    },
+    "type": {
+      "type": "enum",
+      "required": false,
+      "description": "탭 스타일",
+      "values": [
+        "underline",
+        "capsule"
+      ],
+      "default": "underline"
+    },
+    "layout": {
+      "type": "enum",
+      "required": false,
+      "description": "레이아웃 방식",
+      "values": [
+        "scrollable",
+        "fixed"
+      ],
+      "default": "scrollable"
+    },
+    "tone": {
+      "type": "enum",
+      "required": false,
+      "description": "톤",
+      "values": [
+        "natural",
+        "invert"
+      ],
+      "default": "natural"
+    },
+    "state": {
+      "type": "enum",
+      "required": false,
+      "description": "상태",
+      "values": [
+        "default",
+        "selected",
+        "disabled"
+      ],
+      "default": "default"
+    }
+  }
+}

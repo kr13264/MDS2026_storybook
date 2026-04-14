@@ -1,0 +1,39 @@
+{
+  "component": "TabList",
+  "category": "Tabs",
+  "description": "MDS TabList component",
+  "platform": [
+    "web",
+    "app"
+  ],
+  "props": {
+    "type": {
+      "type": "TabType",
+      "required": false,
+      "description": "탭 스타일",
+      "default": "underline"
+    },
+    "layout": {
+      "type": "TabLayout",
+      "required": false,
+      "description": "레이아웃 방식 (scrollable: 가변폭 / fixed: 균등 분할)",
+      "default": "scrollable"
+    },
+    "tone": {
+      "type": "TabTone",
+      "required": false,
+      "description": "톤 (natural: 기본 / invert: 어두운 배경용)",
+      "default": "natural"
+    },
+    "items": {
+      "type": "TabItemConfig[]",
+      "required": false,
+      "description": "탭 항목 목록"
+    },
+    "value": {
+      "type": "string",
+      "required": false,
+      "description": "선택된 값"
+    }
+  }
+}
